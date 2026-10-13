@@ -41,6 +41,7 @@
   <div class="wrap nav-in">
     <a class="brand" href="#top"><img src="img/icon.png" alt="" width="28" height="28"><span>Project <b>Foxy</b></span></a>
     <nav class="links" id="links">
+      <a href="#probalo" data-i18n="nav.demo">Probalo</a>
       <a href="#funciones" data-i18n="nav.features">Funciones</a>
       <a href="#capturas" data-i18n="nav.shots">Capturas</a>
       <a href="#editor" data-i18n="nav.editor">Editor</a>
@@ -93,6 +94,24 @@
     <div data-reveal><b data-count="18">18</b><span data-i18n="stat.adjust">ajustes de tono y color</span></div>
     <div data-reveal><b data-count="10">10</b><span data-i18n="stat.compare">imágenes a la vez al comparar</span></div>
     <div data-reveal><b data-count="6">6</b><span data-i18n="stat.langs">idiomas</span></div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section id="probalo" class="sec demo-sec">
+  <div class="wrap">
+    <p class="kicker" data-reveal data-i18n="demo.k">Probalo acá</p>
+    <h2 data-reveal data-i18n="demo.h">Probá la interfaz</h2>
+    <p class="sub" data-reveal data-i18n="demo.sub">Hacé clic en los botones del programa, como si lo tuvieras abierto. Los efectos no se aplican: es solo para recorrer la interfaz.</p>
+    <figure class="window demo" id="demo" data-reveal>
+      <div class="swap">
+        <img id="demo-a" class="show" src="img/es/demo-v1.webp" alt="" width="1280" height="800" loading="lazy">
+        <img id="demo-b" src="" alt="" width="1280" height="800">
+        <div class="hs-layer" id="hs-layer"></div>
+        <div class="toast" id="toast" role="status"></div>
+      </div>
+    </figure>
+    <p class="demo-hint" data-reveal><span class="pulse"></span><span id="demo-where" data-i18n="demo.hint">Probá con los iconos de arriba a la derecha: Editar, GIF, Collage y Comparar.</span></p>
   </div>
 </section>
 
@@ -164,7 +183,7 @@
       <figure class="window big">
         <div class="swap">
           <img id="shot-a" class="show" data-shot="visor" src="img/es/visor.webp" alt="" width="1280" height="800" loading="lazy">
-          <img id="shot-b" data-shot="visor" src="" alt="" width="1280" height="800" loading="lazy">
+          <img id="shot-b" data-shot="visor" src="" alt="" width="1280" height="800">
         </div>
       </figure>
     </div>

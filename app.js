@@ -58,6 +58,9 @@
     'shots.viewer.d': 'Thumbnails, GPU zoom and everything at hand.', 'shots.effects.d': '43 effects with a preview over the whole image.', 'shots.adjust.d': '18 controls, levels, curves and histogram.',
     'shots.filters.d': '38 “looks” with thumbnails of your photo.', 'shots.gif.d': 'Animations with transitions and text.', 'shots.collage.d': 'Grid or free layouts, no limits.', 'shots.compare.d': 'Up to 10 images with linked zoom.',
     'fmt.raw': 'Camera RAW', 'fmt.anim': 'Animated GIF · APNG · WebP', 'fmt.webpa': 'Animated WebP',
+    'nav.demo': 'Try it', 'demo.k': 'Try it here', 'demo.h': 'Try the interface',
+    'demo.sub': 'Click the program\u2019s buttons as if you had it open. Effects are not applied: this is only to look around the interface.',
+    'demo.hint': 'Try the icons at the top right: Edit, GIF, Collage and Compare.',
     'foot.lic': 'GPL-3.0-or-later · © 2026 Vulito'
   };
 
@@ -96,7 +99,7 @@
     var a = document.querySelector('.swap img.show'), n = a.id === 'shot-a' ? document.getElementById('shot-b') : document.getElementById('shot-a');
     n.dataset.shot = b.dataset.shot;
     var show = function () { n.classList.add('show'); a.classList.remove('show'); };
-    n.onload = show; n.src = shotSrc(b.dataset.shot);
+    n.loading = 'eager'; n.onload = show; n.src = shotSrc(b.dataset.shot);
     if (n.complete && n.naturalWidth) show();
     document.getElementById('shot-a').alt = document.getElementById('shot-b').alt = b.querySelector('b').textContent;
   });
@@ -141,6 +144,80 @@
     .then(function (j) { release = j; applyRelease(); })
     .catch(function () {});
 
+
+
+  // ---- Interface demo: real screenshots with clickable zones (coordinates of the 1280x800 window) ----
+  var TXT = {
+    es: { out: 'Esto no está en la demo: descargá el programa para usarlo completo.', edit: 'Editar', gif: 'GIF animado', collage: 'Collage', compare: 'Comparador', more: 'Más herramientas', set: 'Configuración',
+          prev: 'Anterior', next: 'Siguiente', cancel: 'Cancelar', apply: 'Aplicar', close: 'Cerrar', crop: 'Recortar', size: 'Tamaño', adjust: 'Ajustes', filters: 'Filtros', effects: 'Efectos', lens: 'Lente', photo: 'Foto',
+          h: { visor: 'Probá con los iconos de arriba a la derecha: Editar, GIF, Collage y Comparar. También las miniaturas y las flechas.',
+               edit: 'Elegí Ajustes, Filtros o Efectos.', tool: 'Mirá la vista previa; con Cancelar volvés al menú de edición.',
+               studio: 'Tocá otra vez el icono activo de arriba para volver al visor.' } },
+    en: { out: 'That is not in the demo: download the program to use it fully.', edit: 'Edit', gif: 'Animated GIF', collage: 'Collage', compare: 'Compare', more: 'More tools', set: 'Settings',
+          prev: 'Previous', next: 'Next', cancel: 'Cancel', apply: 'Apply', close: 'Close', crop: 'Crop', size: 'Size', adjust: 'Adjustments', filters: 'Filters', effects: 'Effects', lens: 'Lens', photo: 'Photo',
+          h: { visor: 'Try the icons at the top right: Edit, GIF, Collage and Compare. The thumbnails and arrows work too.',
+               edit: 'Pick Adjustments, Filters or Effects.', tool: 'Look at the preview; Cancel takes you back to the edit menu.',
+               studio: 'Click the active icon at the top again to go back to the viewer.' } }
+  };
+  var demo = { screen: 'visor', photo: 1, hinted: true };
+  var layer = document.getElementById('hs-layer'), toast = document.getElementById('toast'), toastT = 0;
+  function say(msg) { toast.textContent = msg; toast.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(function () { toast.classList.remove('on'); }, 2600); }
+  function demoSrc(sc) {
+    var f = sc === 'visor' ? 'demo-v' + demo.photo : sc === 'edit' ? 'demo-edit' : sc;
+    return (lang === 'es' ? 'img/es/' : 'img/') + f + '.webp';
+  }
+  function go(sc) {
+    var a = document.querySelector('#demo .swap img.show'), n = a.id === 'demo-a' ? document.getElementById('demo-b') : document.getElementById('demo-a');
+    demo.screen = sc;
+    var show = function () { n.classList.add('show'); a.classList.remove('show'); };
+    n.loading = 'eager'; n.onload = show; n.src = demoSrc(sc); if (n.complete && n.naturalWidth) show();
+    drawHot();
+  }
+  function hotspots() {
+    var t = TXT[lang], out = function () { say(t.out); };
+    var scr = demo.screen, list = [];
+    var top = function (x, label, fn, hint) { list.push({ x: x, y: 37, w: 32, h: 26, tip: label, fn: fn, hint: hint, low: true }); };
+    var toggle = function (name) { return function () { go(demo.screen === name ? 'visor' : name); }; };
+    top(1036, t.edit, toggle('edit'), 1); top(1076, t.gif, toggle('gif'), 1); top(1116, t.collage, toggle('collage'), 1); top(1156, t.compare, toggle('comparador'), 1);
+    top(1196, t.more, out); top(1236, t.set, out);
+    if (scr === 'visor') {
+      [[10, 78], [88, 78], [10, 157], [88, 157], [10, 236], [88, 236]].forEach(function (p, i) {
+        list.push({ x: p[0], y: p[1], w: 70, h: 70, tip: t.photo + ' ' + (i + 1), fn: function () { demo.photo = i + 1; go('visor'); } });
+      });
+      var step = function (d) { return function () { demo.photo = (demo.photo - 1 + d + 6) % 6 + 1; go('visor'); }; };
+      list.push({ x: 503, y: 756, w: 44, h: 36, tip: t.prev, fn: step(-1) }, { x: 549, y: 756, w: 44, h: 36, tip: t.next, fn: step(1) });
+      [458, 595, 641, 687, 733, 779].forEach(function (x) { list.push({ x: x, y: 756, w: 44, h: 36, fn: out }); });
+    } else if (scr === 'edit') {
+      [['crop', 114, null], ['size', 184, null], ['adjust', 254, 'ajustes'], ['filters', 324, 'filtros'], ['effects', 394, 'efectos'], ['lens', 464, null]].forEach(function (r) {
+        list.push({ x: 962, y: r[1], w: 306, h: 62, tip: t[r[0]], fn: r[2] ? function () { go(r[2]); } : out });
+      });
+      list.push({ x: 764, y: 756, w: 36, h: 36, tip: t.close, fn: function () { go('visor'); } });
+    } else if (scr === 'ajustes' || scr === 'filtros' || scr === 'efectos') {
+      list.push({ x: 962, y: 706, w: 149, h: 52, tip: t.cancel, fn: function () { go('edit'); } }, { x: 1119, y: 706, w: 149, h: 52, tip: t.apply, fn: out });
+    } else if (scr === 'comparador') {
+      list.push({ x: 872, y: 756, w: 40, h: 36, tip: t.close, fn: function () { go('visor'); } });
+    }
+    return list;
+  }
+  function drawHot() {
+    layer.textContent = '';
+    hotspots().forEach(function (h) {
+      var b = document.createElement('button');
+      b.className = 'hs' + (h.hint && demo.hinted && demo.screen === 'visor' ? ' hint' : '') + (h.low ? ' low' : '');
+      b.style.cssText = 'left:' + h.x / 12.8 + '%;top:' + h.y / 8 + '%;width:' + h.w / 12.8 + '%;height:' + h.h / 8 + '%';
+      if (h.tip) { b.dataset.tip = h.tip; b.setAttribute('aria-label', h.tip); } else b.setAttribute('aria-label', '·');
+      b.addEventListener('click', function () { demo.hinted = false; h.fn(); });
+      layer.appendChild(b);
+    });
+    var k = demo.screen === 'visor' ? 'visor' : demo.screen === 'edit' ? 'edit' : /^(ajustes|filtros|efectos)$/.test(demo.screen) ? 'tool' : 'studio';
+    document.getElementById('demo-where').textContent = TXT[lang].h[k];
+  }
+  function demoLang() {
+    document.getElementById('demo-a').src = demoSrc(demo.screen);
+    document.getElementById('demo-b').removeAttribute('src');
+    document.getElementById('demo-a').classList.add('show'); document.getElementById('demo-b').classList.remove('show');
+    drawHot();
+  }
 
   // ---- Motion (all of it is off for prefers-reduced-motion) ----
   var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -211,5 +288,6 @@
   var faq = document.querySelectorAll('.faq details');
   faq.forEach(function (d) { d.addEventListener('toggle', function () { if (d.open) faq.forEach(function (o) { if (o !== d) o.open = false; }); }); });
 
+  var baseSetLang = setLang; setLang = function (l) { baseSetLang(l); demoLang(); };
   setLang(lang);
 })();
