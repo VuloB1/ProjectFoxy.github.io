@@ -88,11 +88,11 @@
 <!-- NÚMEROS -->
 <section class="stats">
   <div class="wrap stats-in">
-    <div data-reveal><b data-count="43">43</b><span data-i18n="stat.effects">efectos</span></div>
-    <div data-reveal><b data-count="38">38</b><span data-i18n="stat.looks">filtros «look»</span></div>
-    <div data-reveal><b data-count="18">18</b><span data-i18n="stat.adjust">ajustes de tono y color</span></div>
-    <div data-reveal><b data-count="10">10</b><span data-i18n="stat.compare">imágenes a la vez al comparar</span></div>
-    <div data-reveal><b data-count="6">6</b><span data-i18n="stat.langs">idiomas</span></div>
+    <div data-reveal><b data-n="effects"></b><span data-i18n="stat.effects">efectos</span></div>
+    <div data-reveal><b data-n="looks"></b><span data-i18n="stat.looks">filtros «look»</span></div>
+    <div data-reveal><b data-n="adjust"></b><span data-i18n="stat.adjust">ajustes de tono y color</span></div>
+    <div data-reveal><b data-n="compare"></b><span data-i18n="stat.compare">imágenes a la vez al comparar</span></div>
+    <div data-reveal><b data-n="langs"></b><span data-i18n="stat.langs">idiomas</span></div>
   </div>
 </section>
 
@@ -106,12 +106,12 @@
     <div class="showcase" data-reveal>
       <div class="tabs" role="tablist" id="shot-tabs">
         <button role="tab" class="on" data-shot="visor.webp"><b data-i18n="shots.viewer">Visor</b><span data-i18n="shots.viewer.d">Miniaturas, zoom por GPU y todo a mano.</span></button>
-        <button role="tab" data-shot="efectos.webp"><b data-i18n="shots.effects">Efectos</b><span data-i18n="shots.effects.d">43 efectos con vista previa en toda la imagen.</span></button>
-        <button role="tab" data-shot="ajustes.webp"><b data-i18n="shots.adjust">Ajustes</b><span data-i18n="shots.adjust.d">18 controles, niveles, curvas e histograma.</span></button>
-        <button role="tab" data-shot="filtros.webp"><b data-i18n="shots.filters">Filtros</b><span data-i18n="shots.filters.d">38 «looks» con miniaturas de tu foto.</span></button>
+        <button role="tab" data-shot="efectos.webp"><b data-i18n="shots.effects">Efectos</b><span data-i18n="shots.effects.d">{effects} efectos con vista previa en toda la imagen.</span></button>
+        <button role="tab" data-shot="ajustes.webp"><b data-i18n="shots.adjust">Ajustes</b><span data-i18n="shots.adjust.d">{adjust} controles, niveles, curvas e histograma.</span></button>
+        <button role="tab" data-shot="filtros.webp"><b data-i18n="shots.filters">Filtros</b><span data-i18n="shots.filters.d">{looks} «looks» con miniaturas de tu foto.</span></button>
         <button role="tab" data-shot="gif.webp"><b data-i18n="shots.gif">GIF animado</b><span data-i18n="shots.gif.d">Animaciones con transiciones y texto.</span></button>
         <button role="tab" data-shot="collage.webp"><b data-i18n="shots.collage">Collage</b><span data-i18n="shots.collage.d">Diseños de rejilla o libres, sin límites.</span></button>
-        <button role="tab" data-shot="comparador.webp"><b data-i18n="shots.compare">Comparador</b><span data-i18n="shots.compare.d">Hasta 10 imágenes con zoom vinculado.</span></button>
+        <button role="tab" data-shot="comparador.webp"><b data-i18n="shots.compare">Comparador</b><span data-i18n="shots.compare.d">Hasta {compare} imágenes con zoom vinculado.</span></button>
       </div>
       <figure class="window big">
         <div class="swap">
@@ -140,7 +140,7 @@
       <button role="tab" class="fx-tab" data-i="4" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-compare"/></svg><span data-i18n="f.compare.h">Comparador</span></button>
       <button role="tab" class="fx-tab" data-i="5" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-color"/></svg><span data-i18n="f.color.h">Color correcto</span></button>
       <button role="tab" class="fx-tab" data-i="6" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-shield"/></svg><span data-i18n="f.save.h">Guardado seguro</span></button>
-      <button role="tab" class="fx-tab" data-i="7" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-globe"/></svg><span data-i18n="f.langs.h">6 idiomas, 4 temas</span></button>
+      <button role="tab" class="fx-tab" data-i="7" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-globe"/></svg><span data-i18n="f.langs.h">{langs} idiomas, {themes} temas</span></button>
       <button role="tab" class="fx-tab" data-i="8" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-spark"/></svg><span data-i18n="f.more.h">Detalles que suman</span></button>
     </div>
     <div class="fx-panels">
@@ -157,11 +157,11 @@
         <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-film"/></svg></div>
       </div>
       <div class="fx-panel" role="tabpanel">
-        <div class="fx-text"><h3 data-i18n="f.collage.h">Collage sin límites</h3><p data-i18n="f.collage.p">De 1 a 12 fotos, en rejilla o en diseño libre.</p><p class="fx-chips"><span data-i18n="fc.3.0">1–12 fotos</span><span data-i18n="fc.3.1">Rejilla</span><span data-i18n="fc.3.2">Libre</span><span data-i18n="fc.3.3">Plantillas propias</span></p></div>
+        <div class="fx-text"><h3 data-i18n="f.collage.h">Collage sin límites</h3><p data-i18n="f.collage.p">De 1 a {photos} fotos, en rejilla o en diseño libre.</p><p class="fx-chips"><span data-i18n="fc.3.0">1–{photos} fotos</span><span data-i18n="fc.3.1">Rejilla</span><span data-i18n="fc.3.2">Libre</span><span data-i18n="fc.3.3">Plantillas propias</span></p></div>
         <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-collage"/></svg></div>
       </div>
       <div class="fx-panel" role="tabpanel">
-        <div class="fx-text"><h3 data-i18n="f.compare.h">Comparador</h3><p data-i18n="f.compare.p">Hasta 10 imágenes a la vez, con zoom vinculado.</p><p class="fx-chips"><span data-i18n="fc.4.0">2–10 imágenes</span><span data-i18n="fc.4.1">Zoom vinculado</span></p></div>
+        <div class="fx-text"><h3 data-i18n="f.compare.h">Comparador</h3><p data-i18n="f.compare.p">Hasta {compare} imágenes a la vez, con zoom vinculado.</p><p class="fx-chips"><span data-i18n="fc.4.0">{compareMin}–{compare} imágenes</span><span data-i18n="fc.4.1">Zoom vinculado</span></p></div>
         <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-compare"/></svg></div>
       </div>
       <div class="fx-panel" role="tabpanel">
@@ -173,7 +173,7 @@
         <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-shield"/></svg></div>
       </div>
       <div class="fx-panel" role="tabpanel">
-        <div class="fx-text"><h3 data-i18n="f.langs.h">6 idiomas, 4 temas</h3><p data-i18n="f.langs.p">6 idiomas y 4 temas, que cambian sin reiniciar.</p><p class="fx-chips"><span>ES</span><span>EN</span><span>PT</span><span>한국어</span><span>中文</span><span>日本語</span><span data-i18n="fc.7.6">4 temas</span></p></div>
+        <div class="fx-text"><h3 data-i18n="f.langs.h">{langs} idiomas, {themes} temas</h3><p data-i18n="f.langs.p">{langs} idiomas y {themes} temas, que cambian sin reiniciar.</p><p class="fx-chips"><span>ES</span><span>EN</span><span>PT</span><span>한국어</span><span>中文</span><span>日本語</span><span data-i18n="fc.7.6">{themes} temas</span></p></div>
         <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-globe"/></svg></div>
       </div>
       <div class="fx-panel" role="tabpanel">
@@ -240,11 +240,11 @@ flatpak run io.github.vulob1.ProjectFoxy</code></pre>
         <dl>
           <div><dt data-i18n="t.editor.0.t">Recortar</dt><dd data-i18n-html="t.editor.0.d">Tiradores, proporciones, rotar, enderezar y voltear. <b>Marco</b>: rectángulo, elipse, hexágono, estrella, corazón…; esquinas redondas, suaves, cortadas o cóncavas; contorno, margen, sombra y fondo.</dd></div>
           <div><dt data-i18n="t.editor.1.t">Tamaño</dt><dd data-i18n-html="t.editor.1.d">Por píxeles o escala; remuestreo Lanczos-3 con nitidez sin halos al ampliar.</dd></div>
-          <div><dt data-i18n="t.editor.2.t">Ajustes</dt><dd data-i18n-html="t.editor.2.d">18 controles de tono, color y detalle; niveles y curvas por canal; automático; histograma en vivo; grano y ruido de 4 tipos.</dd></div>
-          <div><dt data-i18n="t.editor.3.t">Filtros</dt><dd data-i18n-html="t.editor.3.d">38 «looks» con miniaturas de tu propia foto; cantidad, viñeta y grano.</dd></div>
-          <div><dt data-i18n="t.editor.4.t">Efectos</dt><dd data-i18n-html="t.editor.4.d">43 efectos en 7 grupos (desenfoque, estilo, color, dibujo, luz, distorsión y acabado); vista previa en toda la imagen, sliders, preajustes y mezcla.</dd></div>
+          <div><dt data-i18n="t.editor.2.t">Ajustes</dt><dd data-i18n-html="t.editor.2.d">{adjust} controles de tono, color y detalle; niveles y curvas por canal; automático; histograma en vivo; grano y ruido de {noise} tipos.</dd></div>
+          <div><dt data-i18n="t.editor.3.t">Filtros</dt><dd data-i18n-html="t.editor.3.d">{looks} «looks» con miniaturas de tu propia foto; cantidad, viñeta y grano.</dd></div>
+          <div><dt data-i18n="t.editor.4.t">Efectos</dt><dd data-i18n-html="t.editor.4.d">{effects} efectos en {groups} grupos (desenfoque, estilo, color, dibujo, luz, distorsión y acabado); vista previa en toda la imagen, sliders, preajustes y mezcla.</dd></div>
           <div><dt data-i18n="t.editor.5.t">Lente</dt><dd data-i18n-html="t.editor.5.d">Distorsión, franjas de color y esquinas oscuras con perfiles de Lensfun; reconoce cámara y objetivo por el EXIF, o se ajusta a mano.</dd></div>
-          <div><dt data-i18n="t.editor.6.t">Crear</dt><dd data-i18n-html="t.editor.6.d"><b>GIF / APNG / WebP animados</b>: duración, efecto y texto por fotograma, transiciones. <b>Collage</b>: 1 a 12 fotos, rejilla ajustable o libre, plantillas propias.</dd></div>
+          <div><dt data-i18n="t.editor.6.t">Crear</dt><dd data-i18n-html="t.editor.6.d"><b>GIF / APNG / WebP animados</b>: duración, efecto y texto por fotograma, transiciones. <b>Collage</b>: 1 a {photos} fotos, rejilla ajustable o libre, plantillas propias.</dd></div>
         </dl>
       </div>
       <div class="spec" data-reveal>
@@ -299,7 +299,7 @@ flatpak run io.github.vulob1.ProjectFoxy</code></pre>
           <div><dt data-i18n="t.stack.2.t">Imágenes</dt><dd data-i18n-html="t.stack.2.d">libvips · LibRaw · libheif + libde265 + libaom</dd></div>
           <div><dt data-i18n="t.stack.3.t">Metadatos y lentes</dt><dd data-i18n-html="t.stack.3.d">exiv2 · Lensfun (CC BY-SA 3.0)</dd></div>
           <div><dt data-i18n="t.stack.4.t">Compilación</dt><dd data-i18n-html="t.stack.4.d">CMake + Ninja · MSVC 2022 / GCC · vcpkg</dd></div>
-          <div><dt data-i18n="t.stack.5.t">Pruebas</dt><dd data-i18n-html="t.stack.5.d">QtTest, más de 440 casos; integración continua en Windows y Linux.</dd></div>
+          <div><dt data-i18n="t.stack.5.t">Pruebas</dt><dd data-i18n-html="t.stack.5.d">QtTest, más de {tests} casos; integración continua en Windows y Linux.</dd></div>
         </dl>
       </div>
     </div>
@@ -350,6 +350,7 @@ flatpak run io.github.vulob1.ProjectFoxy</code></pre>
   </div>
 </footer>
 
+<script src="numbers.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

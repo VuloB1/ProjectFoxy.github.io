@@ -22,7 +22,9 @@ Los archivos están en `img/` (inglés) y `img/es/` (español). Cada pestaña de
 Tamaño recomendado: 1280×800 (relación 16:10). Para que la página cargue rápido, usá WebP en las capturas y
 mantené los GIFs/videos por debajo de unos pocos MB.
 
-## Cifras fijas
+## Cifras
 
-«43 efectos», «38 filtros», etc. están escritas en `index.html` (sección de cifras, funciones y detalles
-técnicos) y sus traducciones en `app.js`. Si cambian, se editan a mano.
+Todas las cifras de la página («43 efectos», «38 filtros», «hasta 10 imágenes», «6 idiomas»…) viven en
+`numbers.js`. Se cambian ahí y se actualizan en todos los textos, en español y en inglés (los textos usan
+marcadores como `{effects}`). Si agregás un texto nuevo con una cifra, usá un marcador existente o sumá uno
+nuevo en ese archivo.
