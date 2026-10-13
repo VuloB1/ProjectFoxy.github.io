@@ -65,7 +65,7 @@
   <div class="glow g2" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-brand rise" style="--d:0"><img src="img/icon.png" alt="" width="84" height="84"><span>Project <b>Foxy</b></span></div>
-    <p class="eyebrow rise" style="--d:1"><span class="dot"></span><span id="ver-badge" data-i18n="hero.badge">Versión 0.2.6 · Windows y Linux · Gratis</span></p>
+    <p class="eyebrow rise" style="--d:1"><span class="dot"></span><span id="ver-badge" data-i18n="hero.badge">Windows y Linux · Gratis</span></p>
     <h1 class="rise" style="--d:2" data-i18n-html="hero.title">Mirá tus fotos <em>al instante</em>.<br>Editalas sin salir.</h1>
     <p class="lead rise" style="--d:3" data-i18n="hero.lead">Un visor de imágenes moderno, liviano y rápido, con un editor de fotos completo, creador de GIF, collage y comparador. Sin cuentas, sin nube, sin anuncios.</p>
     <div class="cta rise" style="--d:4">
@@ -79,7 +79,7 @@
 
     <div class="stage rise" style="--d:6">
       <figure class="window hero-shot" id="hero-shot">
-        <img data-shot="visor" src="img/es/visor.webp" alt="Project Foxy: el visor con la barra de miniaturas" width="1280" height="800" fetchpriority="high">
+        <img data-shot="visor.webp" src="img/es/visor.webp" alt="Project Foxy: el visor con la barra de miniaturas" width="1280" height="800" fetchpriority="high">
       </figure>
     </div>
   </div>
@@ -101,22 +101,23 @@
   <div class="wrap">
     <p class="kicker" data-reveal data-i18n="shots.k">Capturas</p>
     <h2 data-reveal data-i18n="shots.h">Mirá cómo se ve</h2>
-    <p class="sub" data-reveal data-i18n="shots.sub">Capturas del programa real (versión 0.2.6).</p>
+    <p class="sub" data-reveal data-i18n="shots.sub">Capturas del programa real.</p>
 
     <div class="showcase" data-reveal>
       <div class="tabs" role="tablist" id="shot-tabs">
-        <button role="tab" class="on" data-shot="visor"><b data-i18n="shots.viewer">Visor</b><span data-i18n="shots.viewer.d">Miniaturas, zoom por GPU y todo a mano.</span></button>
-        <button role="tab" data-shot="efectos"><b data-i18n="shots.effects">Efectos</b><span data-i18n="shots.effects.d">43 efectos con vista previa en toda la imagen.</span></button>
-        <button role="tab" data-shot="ajustes"><b data-i18n="shots.adjust">Ajustes</b><span data-i18n="shots.adjust.d">18 controles, niveles, curvas e histograma.</span></button>
-        <button role="tab" data-shot="filtros"><b data-i18n="shots.filters">Filtros</b><span data-i18n="shots.filters.d">38 «looks» con miniaturas de tu foto.</span></button>
-        <button role="tab" data-shot="gif"><b data-i18n="shots.gif">GIF animado</b><span data-i18n="shots.gif.d">Animaciones con transiciones y texto.</span></button>
-        <button role="tab" data-shot="collage"><b data-i18n="shots.collage">Collage</b><span data-i18n="shots.collage.d">Diseños de rejilla o libres, sin límites.</span></button>
-        <button role="tab" data-shot="comparador"><b data-i18n="shots.compare">Comparador</b><span data-i18n="shots.compare.d">Hasta 10 imágenes con zoom vinculado.</span></button>
+        <button role="tab" class="on" data-shot="visor.webp"><b data-i18n="shots.viewer">Visor</b><span data-i18n="shots.viewer.d">Miniaturas, zoom por GPU y todo a mano.</span></button>
+        <button role="tab" data-shot="efectos.webp"><b data-i18n="shots.effects">Efectos</b><span data-i18n="shots.effects.d">43 efectos con vista previa en toda la imagen.</span></button>
+        <button role="tab" data-shot="ajustes.webp"><b data-i18n="shots.adjust">Ajustes</b><span data-i18n="shots.adjust.d">18 controles, niveles, curvas e histograma.</span></button>
+        <button role="tab" data-shot="filtros.webp"><b data-i18n="shots.filters">Filtros</b><span data-i18n="shots.filters.d">38 «looks» con miniaturas de tu foto.</span></button>
+        <button role="tab" data-shot="gif.webp"><b data-i18n="shots.gif">GIF animado</b><span data-i18n="shots.gif.d">Animaciones con transiciones y texto.</span></button>
+        <button role="tab" data-shot="collage.webp"><b data-i18n="shots.collage">Collage</b><span data-i18n="shots.collage.d">Diseños de rejilla o libres, sin límites.</span></button>
+        <button role="tab" data-shot="comparador.webp"><b data-i18n="shots.compare">Comparador</b><span data-i18n="shots.compare.d">Hasta 10 imágenes con zoom vinculado.</span></button>
       </div>
       <figure class="window big">
         <div class="swap">
-          <img id="shot-a" class="show" data-shot="visor" src="img/es/visor.webp" alt="" width="1280" height="800" loading="lazy">
-          <img id="shot-b" data-shot="visor" src="" alt="" width="1280" height="800">
+          <img id="shot-a" class="show" src="img/es/visor.webp" alt="" width="1280" height="800" loading="lazy">
+          <img id="shot-b" src="" alt="" width="1280" height="800">
+          <video id="shot-v" muted loop playsinline preload="none"></video>
         </div>
       </figure>
     </div>
@@ -190,7 +191,7 @@
   <div class="wrap">
     <p class="kicker" data-reveal data-i18n="dl.k">Descarga</p>
     <h2 data-reveal data-i18n="dl.h">Descargar</h2>
-    <p class="sub" data-reveal><span data-i18n="dl.sub">Última versión:</span> <b id="dl-ver">0.2.6</b> · <a id="dl-notes" href="https://github.com/VuloB1/ProjectFoxy/releases/latest" data-i18n="dl.notes">notas de la versión</a></p>
+    <p class="sub" data-reveal><span id="dl-latest" hidden><span data-i18n="dl.sub">Última versión:</span> <b id="dl-ver"></b> · </span><a id="dl-notes" href="https://github.com/VuloB1/ProjectFoxy/releases/latest" data-i18n="dl.notes">notas de la versión</a></p>
 
     <div class="dl-grid">
       <article class="dl card hl" data-os="win" data-reveal>
@@ -328,7 +329,7 @@ flatpak run io.github.vulob1.ProjectFoxy</code></pre>
       <details><summary data-i18n="faq.q2">¿Por qué Windows me avisa al abrirlo?</summary><div><p data-i18n="faq.a2">Porque el programa todavía no tiene firma de código, algo que cuesta dinero cada año. Verificá la suma SHA-256 de la descarga y elegí «Más información → Ejecutar de todas formas».</p></div></details>
       <details><summary data-i18n="faq.q3">¿Funciona en Mac?</summary><div><p data-i18n="faq.a3">Todavía no: hoy hay versiones para Windows 10/11 y Linux (AppImage y Flatpak).</p></div></details>
       <details><summary data-i18n="faq.q4">¿Modifica mis fotos originales?</summary><div><p data-i18n="faq.a4">Nunca sin avisarte: pide confirmación antes de sobrescribir y escribe el archivo de forma atómica, así que un fallo no lo deja a medias.</p></div></details>
-      <details><summary data-i18n="faq.q5">La ventana se congela al agrandarla (tarjetas Radeon)</summary><div><p data-i18n="faq.a5">Se vio en una Radeon RX 6750 XT con Direct3D 11. Desde la 0.2.6 hay un ajuste «Sincronizar con la pantalla (V-Sync)»; apagarlo lo soluciona en ese caso.</p></div></details>
+      <details><summary data-i18n="faq.q5">La ventana se congela al agrandarla (tarjetas Radeon)</summary><div><p data-i18n="faq.a5">Se vio en una Radeon RX 6750 XT con Direct3D 11. El programa tiene un ajuste «Sincronizar con la pantalla (V-Sync)»; apagarlo lo soluciona en ese caso.</p></div></details>
       <details><summary data-i18n="faq.q6">¿Cómo reporto un error o pido algo?</summary><div><p><span data-i18n="faq.a6">Abrí un issue en</span> <a href="https://github.com/VuloB1/ProjectFoxy/issues">GitHub</a> <span data-i18n="faq.a6b">(hay plantillas).</span></p></div></details>
     </div>
   </div>

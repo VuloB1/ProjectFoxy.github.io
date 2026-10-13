@@ -10,7 +10,7 @@
   // The page is written in Spanish; this is the English version of each data-i18n key.
   var EN = {
     'nav.features': 'Features', 'nav.shots': 'Screenshots', 'nav.editor': 'Editor', 'nav.download': 'Download', 'nav.faq': 'FAQ',
-    'hero.badge': 'Version 0.2.6 · Windows & Linux · Free',
+    'hero.badge': 'Windows & Linux · Free',
     'hero.title': 'View your photos <em>instantly</em>.<br>Edit them without leaving.',
     'hero.lead': 'A modern, light and fast image viewer with a full photo editor, GIF maker, collage and compare view. No accounts, no cloud, no ads.',
     'hero.cta': 'Download', 'hero.more': 'See what it does',
@@ -26,7 +26,7 @@
     'f.save.h': 'Safe saving', 'f.save.p': 'Atomic writes: a failure never leaves your original half-written. Keeps EXIF, IPTC and XMP, asks before overwriting, warns about unsaved changes and saves in the background without freezing the window.',
     'f.langs.h': '6 languages, 4 themes', 'f.langs.p': 'English, Español, Português, 한국어, 中文, 日本語. They switch instantly, no restart. Light, dark and two Windows 98 style themes.',
     'f.more.h': 'Details that add up', 'f.more.p': 'Eyedropper with Alt, meme caption, batch export and rename, smooth zoom and file names with any character.',
-    'shots.h': 'See how it looks', 'shots.sub': 'Screenshots of the real program (version 0.2.6).',
+    'shots.h': 'See how it looks', 'shots.sub': 'Screenshots of the real program.',
     'shots.viewer': 'Viewer', 'shots.effects': 'Effects', 'shots.adjust': 'Adjustments', 'shots.filters': 'Filters', 'shots.gif': 'Animated GIF', 'shots.collage': 'Collage', 'shots.compare': 'Compare',
     'ed.h': 'An editor that stays out of the way', 'ed.sub': 'Seven tools, each in its own tab. The preview runs on the GPU and the saved file uses the same math, checked by automated tests.',
     'ed.crop.h': 'Crop', 'ed.crop.p': 'Handles, aspect ratios, rotate, straighten and flip. With <b>Frame</b>: rectangle, ellipse, hexagon, star, heart…, round, soft, cut or concave corners, outline, margin, shadow and background.',
@@ -52,7 +52,7 @@
     'faq.q2': 'Why does Windows warn me when I open it?', 'faq.a2': 'Because the program does not have a code-signing certificate yet, which costs money every year. Check the SHA-256 of the download and choose “More info → Run anyway”.',
     'faq.q3': 'Does it work on Mac?', 'faq.a3': 'Not yet: today there are versions for Windows 10/11 and Linux (AppImage and Flatpak).',
     'faq.q4': 'Does it change my original photos?', 'faq.a4': 'Never without telling you: it asks before overwriting and writes the file atomically, so a failure does not leave it half-written.',
-    'faq.q5': 'The window freezes when I enlarge it (Radeon cards)', 'faq.a5': 'Seen on a Radeon RX 6750 XT with Direct3D 11. Since 0.2.6 there is a “Sync with the screen (V-Sync)” setting; turning it off fixes it in that case.',
+    'faq.q5': 'The window freezes when I enlarge it (Radeon cards)', 'faq.a5': 'Seen on a Radeon RX 6750 XT with Direct3D 11. There is a “Sync with the screen (V-Sync)” setting; turning it off fixes it in that case.',
     'faq.q6': 'How do I report a bug or ask for something?', 'faq.a6': 'Open an issue on', 'faq.a6b': '(there are templates).',
     'feat.k': 'Features', 'shots.k': 'Screenshots', 'ed.k': 'Editor', 'fmt.k': 'Compatibility', 'dl.k': 'Download', 'os.k': 'Open source', 'faq.k': 'Questions',
     'shots.viewer.d': 'Thumbnails, GPU zoom and everything at hand.', 'shots.effects.d': '43 effects with a preview over the whole image.', 'shots.adjust.d': '18 controls, levels, curves and histogram.',
@@ -188,22 +188,39 @@
     applyRelease();
   }
 
-  // Screenshots: the program's own language folder; the tabs cross-fade between two stacked images.
-  function shotSrc(n) { return (lang === 'es' ? 'img/es/' : 'img/') + n + '.webp'; }
+  // Screenshots, GIFs and videos of the gallery. A tab's data-shot is a file name (extension included) looked up in
+  // img/<language>/ and, if it is not there, in img/ — so one video can serve every language.
+  var pool = ['shot-a', 'shot-b', 'shot-v'].map(function (id) { return document.getElementById(id); });
+  var isVideo = function (n) { return /\.(mp4|webm)$/i.test(n); };
+  function loadMedia(el, name) {
+    var retried = lang !== 'es';
+    el.onerror = function () { if (!retried) { retried = true; el.src = 'img/' + name; } };
+    el.src = (lang === 'es' ? 'img/es/' : 'img/') + name;
+  }
+  function showShot(name, label) {
+    var cur = pool.filter(function (e) { return e.classList.contains('show'); })[0];
+    var vid = isVideo(name);
+    var n = vid ? pool[2] : (cur === pool[0] ? pool[1] : pool[0]);
+    var done = function () {
+      if (n !== cur) { n.classList.add('show'); if (cur) { cur.classList.remove('show'); if (cur.pause) cur.pause(); } }
+      if (n.play) n.play().catch(function () {});
+    };
+    n.loading = 'eager';
+    if (vid) n.onloadeddata = done; else n.onload = done;
+    loadMedia(n, name);
+    if (!vid && n.complete && n.naturalWidth) done();
+    pool[0].alt = pool[1].alt = label || '';
+    if (n.title !== undefined) n.title = label || '';
+  }
   function shots() {
-    document.querySelectorAll('img[data-shot]').forEach(function (img) { if (img.dataset.shot) img.src = shotSrc(img.dataset.shot); });
-    var on = document.querySelector('#shot-tabs .on b');
-    document.getElementById('shot-a').alt = document.getElementById('shot-b').alt = on ? on.textContent : '';
+    var hero = document.querySelector('.hero-shot img'); loadMedia(hero, hero.dataset.shot);
+    var on = document.querySelector('#shot-tabs .on');
+    if (on) showShot(on.dataset.shot, on.querySelector('b').textContent);
   }
   document.getElementById('shot-tabs').addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b || b.classList.contains('on')) return;
     document.querySelectorAll('#shot-tabs button').forEach(function (x) { x.classList.toggle('on', x === b); });
-    var a = document.querySelector('.swap img.show'), n = a.id === 'shot-a' ? document.getElementById('shot-b') : document.getElementById('shot-a');
-    n.dataset.shot = b.dataset.shot;
-    var show = function () { n.classList.add('show'); a.classList.remove('show'); };
-    n.loading = 'eager'; n.onload = show; n.src = shotSrc(b.dataset.shot);
-    if (n.complete && n.naturalWidth) show();
-    document.getElementById('shot-a').alt = document.getElementById('shot-b').alt = b.querySelector('b').textContent;
+    showShot(b.dataset.shot, b.querySelector('b').textContent);
   });
 
   document.getElementById('lang').addEventListener('click', function () { setLang(lang === 'es' ? 'en' : 'es'); });
@@ -229,7 +246,7 @@
     else { label.textContent = es ? 'Ver descargas' : 'See downloads'; fine.textContent = es ? 'Windows 10/11 y Linux' : 'Windows 10/11 and Linux'; }
     if (!release) return;
     var v = release.tag_name.replace(/^v/, '');
-    document.getElementById('dl-ver').textContent = v;
+    document.getElementById('dl-ver').textContent = v; document.getElementById('dl-latest').hidden = false;
     document.getElementById('dl-notes').href = release.html_url;
     document.getElementById('ver-badge').textContent = (es ? 'Versión ' : 'Version ') + v + (es ? ' · Windows y Linux · Gratis' : ' · Windows & Linux · Free');
     document.querySelectorAll('[data-asset]').forEach(function (a) {
