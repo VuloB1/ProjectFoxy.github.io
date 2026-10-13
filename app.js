@@ -54,6 +54,10 @@
     'faq.q4': 'Does it change my original photos?', 'faq.a4': 'Never without telling you: it asks before overwriting and writes the file atomically, so a failure does not leave it half-written.',
     'faq.q5': 'The window freezes when I enlarge it (Radeon cards)', 'faq.a5': 'Seen on a Radeon RX 6750 XT with Direct3D 11. Since 0.2.6 there is a “Sync with the screen (V-Sync)” setting; turning it off fixes it in that case.',
     'faq.q6': 'How do I report a bug or ask for something?', 'faq.a6': 'Open an issue on', 'faq.a6b': '(there are templates).',
+    'feat.k': 'Features', 'shots.k': 'Screenshots', 'ed.k': 'Editor', 'fmt.k': 'Compatibility', 'dl.k': 'Download', 'os.k': 'Open source', 'faq.k': 'Questions',
+    'shots.viewer.d': 'Thumbnails, GPU zoom and everything at hand.', 'shots.effects.d': '43 effects with a preview over the whole image.', 'shots.adjust.d': '18 controls, levels, curves and histogram.',
+    'shots.filters.d': '38 “looks” with thumbnails of your photo.', 'shots.gif.d': 'Animations with transitions and text.', 'shots.collage.d': 'Grid or free layouts, no limits.', 'shots.compare.d': 'Up to 10 images with linked zoom.',
+    'fmt.raw': 'Camera RAW', 'fmt.anim': 'Animated GIF · APNG · WebP', 'fmt.webpa': 'Animated WebP',
     'foot.lic': 'GPL-3.0-or-later · © 2026 Vulito'
   };
 
@@ -79,18 +83,22 @@
     applyRelease();
   }
 
-  // Screenshots: the program's own language folder.
+  // Screenshots: the program's own language folder; the tabs cross-fade between two stacked images.
+  function shotSrc(n) { return (lang === 'es' ? 'img/es/' : 'img/') + n + '.webp'; }
   function shots() {
-    document.querySelectorAll('img[data-shot]').forEach(function (img) {
-      img.src = (lang === 'es' ? 'img/es/' : 'img/') + img.dataset.shot + '.webp';
-    });
-    document.getElementById('shot-main').alt = (document.querySelector('#shot-tabs .on') || {}).textContent || '';
+    document.querySelectorAll('img[data-shot]').forEach(function (img) { if (img.dataset.shot) img.src = shotSrc(img.dataset.shot); });
+    var on = document.querySelector('#shot-tabs .on b');
+    document.getElementById('shot-a').alt = document.getElementById('shot-b').alt = on ? on.textContent : '';
   }
   document.getElementById('shot-tabs').addEventListener('click', function (e) {
-    var b = e.target.closest('button'); if (!b) return;
+    var b = e.target.closest('button'); if (!b || b.classList.contains('on')) return;
     document.querySelectorAll('#shot-tabs button').forEach(function (x) { x.classList.toggle('on', x === b); });
-    document.getElementById('shot-main').dataset.shot = b.dataset.shot;
-    shots();
+    var a = document.querySelector('.swap img.show'), n = a.id === 'shot-a' ? document.getElementById('shot-b') : document.getElementById('shot-a');
+    n.dataset.shot = b.dataset.shot;
+    var show = function () { n.classList.add('show'); a.classList.remove('show'); };
+    n.onload = show; n.src = shotSrc(b.dataset.shot);
+    if (n.complete && n.naturalWidth) show();
+    document.getElementById('shot-a').alt = document.getElementById('shot-b').alt = b.querySelector('b').textContent;
   });
 
   document.getElementById('lang').addEventListener('click', function () { setLang(lang === 'es' ? 'en' : 'es'); });
@@ -132,6 +140,76 @@
     .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
     .then(function (j) { release = j; applyRelease(); })
     .catch(function () {});
+
+
+  // ---- Motion (all of it is off for prefers-reduced-motion) ----
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals = [].slice.call(document.querySelectorAll('[data-reveal]'));
+  reveals.forEach(function (n) {
+    var sib = [].filter.call(n.parentNode.children, function (c) { return c.hasAttribute('data-reveal'); });
+    n.style.setProperty('--rd', Math.min(sib.indexOf(n), 5) * 80 + 'ms');
+  });
+  function countUp(el) {
+    var to = +el.dataset.count, t0 = performance.now();
+    (function step(t) {
+      var k = Math.min((t - t0) / 1100, 1);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+  if ('IntersectionObserver' in window && !still) {
+    var io = new IntersectionObserver(function (list) {
+      list.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in'); io.unobserve(e.target);
+        var c = e.target.querySelector('[data-count]'); if (c) countUp(c);
+      });
+    }, { threshold: .15, rootMargin: '0px 0px -6% 0px' });
+    reveals.forEach(function (n) { io.observe(n); });
+  } else {
+    reveals.forEach(function (n) { n.classList.add('in'); });
+  }
+
+  var nav = document.getElementById('nav'), bar = document.getElementById('progress'), hero = document.getElementById('hero-shot');
+  var ticking = false;
+  function onScroll() {
+    ticking = false;
+    var y = window.scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    nav.classList.toggle('scrolled', y > 8);
+    bar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+    if (!still) {
+      var p = Math.min(y / 520, 1);
+      hero.style.setProperty('--tilt', (14 * (1 - p)).toFixed(2) + 'deg');
+      hero.style.setProperty('--sc', (.96 + .04 * p).toFixed(3));
+      hero.style.setProperty('--lift', (-24 * p).toFixed(1) + 'px');
+    }
+  }
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  // Light that follows the cursor on the cards.
+  document.querySelectorAll('.spot').forEach(function (c) {
+    c.addEventListener('pointermove', function (e) {
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // Current section in the menu.
+  var spy = {}; document.querySelectorAll('#links a').forEach(function (a) { spy[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var so = new IntersectionObserver(function (list) {
+      list.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        Object.keys(spy).forEach(function (k) { spy[k].classList.toggle('on', k === e.target.id); });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(spy).forEach(function (k) { so.observe(document.getElementById(k)); });
+  }
+
+  // FAQ: one open at a time.
+  var faq = document.querySelectorAll('.faq details');
+  faq.forEach(function (d) { d.addEventListener('toggle', function () { if (d.open) faq.forEach(function (o) { if (o !== d) o.open = false; }); }); });
 
   setLang(lang);
 })();
