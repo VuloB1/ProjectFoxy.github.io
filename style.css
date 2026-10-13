@@ -243,3 +243,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .spec code { padding: 1px 6px; border-radius: 6px; background: var(--bg2); border: 1px solid var(--line); font-size: .9em; }
 @media (max-width: 900px) { .tech-grid { grid-template-columns: 1fr; gap: 32px; } }
 @media (max-width: 520px) { .spec dl > div { grid-template-columns: 1fr; gap: 2px; } }
+
+/* funciones: lista editorial */
+.flist { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
+.fitem { position: relative; display: grid; grid-template-columns: 44px 36px minmax(180px, 1fr) 1.5fr 28px; align-items: center; gap: 0 20px; padding: 26px 14px; border-top: 1px solid var(--line); overflow: hidden; isolation: isolate; cursor: default; }
+.fitem::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--accent-soft); transform: scaleX(0); transform-origin: 0 50%; transition: transform .55s var(--ease); }
+.fitem:hover::before { transform: scaleX(1); }
+.fn { font: 600 13px/1 ui-monospace, Consolas, monospace; color: var(--mute); transition: color .25s; }
+.fi { fill: none; stroke: var(--mute); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: stroke .25s, transform .45s var(--ease); }
+.fitem h3 { margin: 0; font-size: clamp(20px, 2.6vw, 30px); letter-spacing: -.025em; line-height: 1.15; transition: transform .45s var(--ease), color .25s; }
+.fitem p { margin: 0; color: var(--mute); font-size: 16px; transition: color .25s; }
+.fa { justify-self: end; font-size: 22px; color: var(--accent); opacity: 0; transform: translateX(-12px); transition: opacity .3s, transform .45s var(--ease); }
+.fitem:hover .fn, .fitem:hover .fi { color: var(--accent); stroke: var(--accent); }
+.fitem:hover .fi { transform: scale(1.18) rotate(-6deg); }
+.fitem:hover h3 { transform: translateX(8px); }
+.fitem:hover p { color: var(--ink); }
+.fitem:hover .fa { opacity: 1; transform: none; }
+@media (max-width: 760px) {
+  .fitem { grid-template-columns: 34px 1fr; gap: 4px 14px; padding: 20px 6px; }
+  .fn, .fa { display: none; }
+  .fi { grid-row: 1 / span 2; align-self: start; margin-top: 4px; }
+  .fitem p { grid-column: 2; }
+}
