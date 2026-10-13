@@ -96,7 +96,7 @@
     var a = document.querySelector('.swap img.show'), n = a.id === 'shot-a' ? document.getElementById('shot-b') : document.getElementById('shot-a');
     n.dataset.shot = b.dataset.shot;
     var show = function () { n.classList.add('show'); a.classList.remove('show'); };
-    n.onload = show; n.src = shotSrc(b.dataset.shot);
+    n.loading = 'eager'; n.onload = show; n.src = shotSrc(b.dataset.shot);
     if (n.complete && n.naturalWidth) show();
     document.getElementById('shot-a').alt = document.getElementById('shot-b').alt = b.querySelector('b').textContent;
   });
