@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Foxy — visor y editor de imágenes</title>
+<meta name="description" content="Project Foxy: visor de imágenes rápido y ligero para Windows y Linux, con editor de fotos, creador de GIF, collage y comparador. Gratis y de código abierto.">
+<meta name="theme-color" content="#16120f">
+<meta property="og:title" content="Project Foxy">
+<meta property="og:description" content="Visor de imágenes rápido con editor, GIF, collage y comparador. Gratis, GPL-3.0.">
+<meta property="og:image" content="https://vulob1.github.io/img/social.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Antes de pintar: evita el parpadeo del tema y del idioma.
+  try {
+    var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t;
+  } catch (e) {}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><img src="img/icon.png" alt="" width="28" height="28"><span>Project <b>Foxy</b></span></a>
+    <nav class="links">
+      <a href="#funciones" data-i18n="nav.features">Funciones</a>
+      <a href="#capturas" data-i18n="nav.shots">Capturas</a>
+      <a href="#editor" data-i18n="nav.editor">Editor</a>
+      <a href="#descargar" data-i18n="nav.download">Descargar</a>
+      <a href="#faq" data-i18n="nav.faq">Preguntas</a>
+    </nav>
+    <div class="tools">
+      <button class="chip-btn" id="lang" aria-label="Idioma / Language">EN</button>
+      <button class="chip-btn" id="theme" aria-label="Tema / Theme">◐</button>
+      <a class="chip-btn gh" href="https://github.com/VuloB1/ProjectFoxy" aria-label="GitHub">
+        <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow"><span class="dot"></span><span id="ver-badge" data-i18n="hero.badge">Versión 0.2.6 · Windows y Linux · Gratis</span></p>
+    <h1 data-i18n-html="hero.title">Mirá tus fotos <em>al instante</em>.<br>Editalas sin salir.</h1>
+    <p class="lead" data-i18n="hero.lead">Un visor de imágenes moderno, liviano y rápido, con un editor de fotos completo, creador de GIF, collage y comparador. Sin cuentas, sin nube, sin anuncios.</p>
+    <div class="cta">
+      <a class="btn primary" id="cta-main" href="https://github.com/VuloB1/ProjectFoxy/releases/latest">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>
+        <span id="cta-label" data-i18n="hero.cta">Descargar</span>
+      </a>
+      <a class="btn" href="#funciones" data-i18n="hero.more">Ver qué hace</a>
+    </div>
+    <p class="fine" id="cta-fine" data-i18n="hero.fine">Windows 10/11 de 64 bits · instalador o portable</p>
+
+    <figure class="window hero-shot">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <img data-shot="visor" src="img/visor.webp" alt="Project Foxy: el visor con la barra de miniaturas" width="1280" height="800" fetchpriority="high">
+    </figure>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<section class="stats">
+  <div class="wrap stats-in">
+    <div><b>43</b><span data-i18n="stat.effects">efectos</span></div>
+    <div><b>38</b><span data-i18n="stat.looks">filtros «look»</span></div>
+    <div><b>18</b><span data-i18n="stat.adjust">ajustes de tono y color</span></div>
+    <div><b>10</b><span data-i18n="stat.compare">imágenes a la vez al comparar</span></div>
+    <div><b>6</b><span data-i18n="stat.langs">idiomas</span></div>
+  </div>
+</section>
+
+<!-- FUNCIONES -->
+<section id="funciones" class="sec">
+  <div class="wrap">
+    <h2 data-i18n="feat.h">Todo en un solo programa</h2>
+    <p class="sub" data-i18n="feat.sub">Abrís una foto y ya está. Cuando querés tocarla, el editor está a un clic.</p>
+
+    <div class="grid">
+      <article class="card wide">
+        <h3 data-i18n="f.viewer.h">Visor veloz</h3>
+        <p data-i18n="f.viewer.p">Abre al instante JPEG, PNG, WebP, TIFF, HEIC, AVIF y RAW de cámara. Recorre la carpeta con miniaturas, zoom y desplazamiento por GPU, rotación, pantalla completa, información EXIF con histograma, fondo de escritorio y papelera.</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="f.editor.h">Editor completo</h3>
+        <p data-i18n="f.editor.p">Recorte, tamaño, 18 ajustes, niveles y curvas, 38 filtros, 43 efectos, corrección de lente y marcos. Deshacer y rehacer en todo.</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="f.gif.h">GIF, APNG y WebP</h3>
+        <p data-i18n="f.gif.p">Armá animaciones con duración, efecto y texto propios por imagen, y transiciones. Las animadas se reproducen de verdad.</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="f.collage.h">Collage sin límites</h3>
+        <p data-i18n="f.collage.p">De 1 a 12 fotos, divisorias ajustables o diseño libre, y plantillas propias que podés guardar.</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="f.compare.h">Comparador</h3>
+        <p data-i18n="f.compare.p">De 2 a 10 imágenes lado a lado, acomodadas según su forma, con zoom y desplazamiento vinculados.</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="f.color.h">Color correcto</h3>
+        <p data-i18n="f.color.p">Las fotos Display P3 (iPhone) o AdobeRGB se convierten a sRGB al abrirlas: nada de colores apagados.</p>
+      </article>
+      <article class="card wide">
+        <h3 data-i18n="f.save.h">Guardado seguro</h3>
+        <p data-i18n="f.save.p">Escritura atómica: un fallo nunca deja tu original a medias. Conserva EXIF, IPTC y XMP, pide confirmación antes de sobrescribir, avisa de los cambios sin guardar y guarda en segundo plano sin congelar la ventana.</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="f.langs.h">6 idiomas, 4 temas</h3>
+        <p data-i18n="f.langs.p">Español, English, Português, 한국어, 中文, 日本語. Cambian al instante, sin reiniciar. Temas claro, oscuro y dos estilo Windows 98.</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="f.more.h">Detalles que suman</h3>
+        <p data-i18n="f.more.p">Cuentagotas con Alt, leyenda de meme, exportación y renombrado por lote, zoom suavizado y nombres de archivo con cualquier carácter.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CAPTURAS -->
+<section id="capturas" class="sec alt">
+  <div class="wrap">
+    <h2 data-i18n="shots.h">Mirá cómo se ve</h2>
+    <p class="sub" data-i18n="shots.sub">Capturas del programa real (versión 0.2.6).</p>
+    <div class="tabs" role="tablist" id="shot-tabs">
+      <button role="tab" class="on" data-shot="visor" data-i18n="shots.viewer">Visor</button>
+      <button role="tab" data-shot="efectos" data-i18n="shots.effects">Efectos</button>
+      <button role="tab" data-shot="ajustes" data-i18n="shots.adjust">Ajustes</button>
+      <button role="tab" data-shot="filtros" data-i18n="shots.filters">Filtros</button>
+      <button role="tab" data-shot="gif" data-i18n="shots.gif">GIF animado</button>
+      <button role="tab" data-shot="collage" data-i18n="shots.collage">Collage</button>
+      <button role="tab" data-shot="comparador" data-i18n="shots.compare">Comparador</button>
+    </div>
+    <figure class="window big">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <img id="shot-main" data-shot="visor" src="img/visor.webp" alt="" width="1280" height="800" loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<!-- EDITOR -->
+<section id="editor" class="sec">
+  <div class="wrap">
+    <h2 data-i18n="ed.h">Un editor que no estorba</h2>
+    <p class="sub" data-i18n="ed.sub">Siete herramientas, cada una en su pestaña. La vista previa corre en la GPU y el archivo guardado usa la misma matemática, comprobada por pruebas automáticas.</p>
+    <div class="rows">
+      <div class="row"><h3 data-i18n="ed.crop.h">Recortar</h3><p data-i18n="ed.crop.p">Tiradores, proporciones, rotar, enderezar y voltear. Con <b>Marco</b>: rectángulo, elipse, hexágono, estrella, corazón…, esquinas redondas, suaves, cortadas o cóncavas, contorno, margen, sombra y fondo.</p></div>
+      <div class="row"><h3 data-i18n="ed.size.h">Tamaño</h3><p data-i18n="ed.size.p">Por píxeles o escala, con remuestreo Lanczos-3 y nitidez sin halos al ampliar.</p></div>
+      <div class="row"><h3 data-i18n="ed.adj.h">Ajustes</h3><p data-i18n="ed.adj.p">18 controles de tono, color y detalle; niveles y curvas por canal; automático; histograma en vivo; grano y ruido de 4 tipos.</p></div>
+      <div class="row"><h3 data-i18n="ed.fil.h">Filtros</h3><p data-i18n="ed.fil.p">38 «looks» con miniaturas de tu propia foto, cantidad, viñeta y grano.</p></div>
+      <div class="row"><h3 data-i18n="ed.fx.h">Efectos</h3><p data-i18n="ed.fx.p">43 efectos en 7 grupos —desenfoque, estilo, color, dibujo, luz, distorsión y acabado— con vista previa sobre toda la imagen, sliders, preajustes y mezcla.</p></div>
+      <div class="row"><h3 data-i18n="ed.lens.h">Lente</h3><p data-i18n="ed.lens.p">Corrige distorsión, franjas de color y esquinas oscuras con la base de perfiles de Lensfun; reconoce cámara y objetivo por el EXIF, o se hace a mano.</p></div>
+      <div class="row"><h3 data-i18n="ed.create.h">Crear</h3><p data-i18n="ed.create.p">GIF/APNG/WebP animados y collages, desde la barra superior.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATOS -->
+<section class="sec alt">
+  <div class="wrap">
+    <h2 data-i18n="fmt.h">Formatos</h2>
+    <div class="fmt">
+      <div>
+        <h3 data-i18n="fmt.open">Abre</h3>
+        <p class="chips"><span>JPEG</span><span>PNG</span><span>WebP</span><span>TIFF</span><span>BMP</span><span>GIF</span><span>ICO</span><span>HEIC / HEIF</span><span>AVIF</span><span>RAW de cámara</span><span>GIF · APNG · WebP animados</span></p>
+      </div>
+      <div>
+        <h3 data-i18n="fmt.save">Guarda</h3>
+        <p class="chips"><span>PNG</span><span>JPG</span><span>BMP</span><span>TIFF</span><span>WebP</span></p>
+      </div>
+      <div>
+        <h3 data-i18n="fmt.make">Crea</h3>
+        <p class="chips"><span>GIF</span><span>APNG</span><span>WebP animado</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESCARGAR -->
+<section id="descargar" class="sec">
+  <div class="wrap">
+    <h2 data-i18n="dl.h">Descargar</h2>
+    <p class="sub"><span data-i18n="dl.sub">Última versión:</span> <b id="dl-ver">0.2.6</b> · <a id="dl-notes" href="https://github.com/VuloB1/ProjectFoxy/releases/latest" data-i18n="dl.notes">notas de la versión</a></p>
+
+    <div class="dl-grid">
+      <article class="dl card hl" data-os="win">
+        <span class="tag">Windows 10 / 11</span>
+        <h3 data-i18n="dl.setup.h">Instalador</h3>
+        <p data-i18n="dl.setup.p">No pide permisos de administrador. Crea el acceso directo y, si querés, te deja en «Abrir con» y en Aplicaciones predeterminadas.</p>
+        <a class="btn primary" data-asset="Setup" href="https://github.com/VuloB1/ProjectFoxy/releases/latest"><span data-i18n="dl.get">Descargar</span> <small></small></a>
+      </article>
+      <article class="dl card" data-os="win">
+        <span class="tag">Windows 10 / 11</span>
+        <h3 data-i18n="dl.port.h">Portable</h3>
+        <p data-i18n="dl.port.p">Descomprimí toda la carpeta y abrí ProjectFoxy.exe. Guarda su configuración al lado y no toca el registro.</p>
+        <a class="btn" data-asset="portable" href="https://github.com/VuloB1/ProjectFoxy/releases/latest"><span data-i18n="dl.get">Descargar</span> <small></small></a>
+      </article>
+      <article class="dl card" data-os="linux">
+        <span class="tag">Linux</span>
+        <h3>AppImage</h3>
+        <p data-i18n="dl.ai.p">Sin instalar nada. Cualquier distribución de 64 bits con glibc 2.35 o más nueva, en X11 y Wayland.</p>
+        <a class="btn" data-asset="AppImage" href="https://github.com/VuloB1/ProjectFoxy/releases/latest"><span data-i18n="dl.get">Descargar</span> <small></small></a>
+        <pre><code>chmod +x ProjectFoxy-*.AppImage
+./ProjectFoxy-*.AppImage foto.jpg</code></pre>
+      </article>
+      <article class="dl card" data-os="linux">
+        <span class="tag">Linux</span>
+        <h3>Flatpak</h3>
+        <p data-i18n="dl.fp.p">Trae su propio runtime: sirve en distribuciones viejas o muy distintas (Debian 11, Ubuntu 20.04, RHEL 8-9…).</p>
+        <a class="btn" data-asset="flatpak" href="https://github.com/VuloB1/ProjectFoxy/releases/latest"><span data-i18n="dl.get">Descargar</span> <small></small></a>
+        <pre><code>flatpak install --user ProjectFoxy-*.flatpak
+flatpak run io.github.vulob1.ProjectFoxy</code></pre>
+      </article>
+    </div>
+
+    <p class="note" data-i18n-html="dl.note">Cada archivo trae su suma SHA-256 (<a href="https://github.com/VuloB1/ProjectFoxy/releases/latest">SHA256SUMS.txt</a>). Windows puede avisar «Windows protegió su PC» porque el programa todavía no está firmado: <em>Más información → Ejecutar de todas formas</em>.</p>
+  </div>
+</section>
+
+<!-- ABIERTO -->
+<section class="sec alt">
+  <div class="wrap two">
+    <div>
+      <h2 data-i18n="os.h">Gratis y de código abierto</h2>
+      <p data-i18n="os.p1">Project Foxy se publica bajo la licencia GPL-3.0-or-later. Podés leer el código, compilarlo, proponer cambios o traducirlo a tu idioma.</p>
+      <p data-i18n="os.p2">No pide cuenta, no usa la nube y el programa no incluye nada que se conecte a internet para funcionar.</p>
+      <p><a class="btn" href="https://github.com/VuloB1/ProjectFoxy" data-i18n="os.repo">Ver el código en GitHub</a></p>
+    </div>
+    <ul class="facts">
+      <li><b>C++20 · Qt 6.7</b><span data-i18n="os.f1">Qt Quick con aceleración por GPU</span></li>
+      <li><b>libvips · LibRaw · libheif</b><span data-i18n="os.f2">decodificación de imágenes y RAW</span></li>
+      <li><b>exiv2 · Lensfun</b><span data-i18n="os.f3">metadatos y perfiles de lente</span></li>
+      <li><b>CI</b><span data-i18n="os.f4">pruebas automáticas en cada cambio, en Windows y Linux</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec">
+  <div class="wrap narrow">
+    <h2 data-i18n="faq.h">Preguntas frecuentes</h2>
+    <details><summary data-i18n="faq.q1">¿Es gratis?</summary><p data-i18n="faq.a1">Sí, completamente, y seguirá siéndolo. Si te gusta podés ayudar con un aviso de error, una traducción o una mejora en GitHub.</p></details>
+    <details><summary data-i18n="faq.q2">¿Por qué Windows me avisa al abrirlo?</summary><p data-i18n="faq.a2">Porque el programa todavía no tiene firma de código, algo que cuesta dinero cada año. Verificá la suma SHA-256 de la descarga y elegí «Más información → Ejecutar de todas formas».</p></details>
+    <details><summary data-i18n="faq.q3">¿Funciona en Mac?</summary><p data-i18n="faq.a3">Todavía no: hoy hay versiones para Windows 10/11 y Linux (AppImage y Flatpak).</p></details>
+    <details><summary data-i18n="faq.q4">¿Modifica mis fotos originales?</summary><p data-i18n="faq.a4">Nunca sin avisarte: pide confirmación antes de sobrescribir y escribe el archivo de forma atómica, así que un fallo no lo deja a medias.</p></details>
+    <details><summary data-i18n="faq.q5">La ventana se congela al agrandarla (tarjetas Radeon)</summary><p data-i18n="faq.a5">Se vio en una Radeon RX 6750 XT con Direct3D 11. Desde la 0.2.6 hay un ajuste «Sincronizar con la pantalla (V-Sync)»; apagarlo lo soluciona en ese caso.</p></details>
+    <details><summary data-i18n="faq.q6">¿Cómo reporto un error o pido algo?</summary><p><span data-i18n="faq.a6">Abrí un issue en</span> <a href="https://github.com/VuloB1/ProjectFoxy/issues">GitHub</a> <span data-i18n="faq.a6b">(hay plantillas).</span></p></details>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="brand"><img src="img/icon.png" alt="" width="22" height="22"><span>Project <b>Foxy</b></span></span>
+    <span data-i18n="foot.lic">GPL-3.0-or-later · © 2026 Vulito</span>
+    <span class="flinks">
+      <a href="https://github.com/VuloB1/ProjectFoxy">GitHub</a>
+      <a href="https://github.com/VuloB1/ProjectFoxy/releases">Releases</a>
+      <a href="https://github.com/VuloB1/ProjectFoxy/blob/main/CHANGELOG.md">Changelog</a>
+      <a href="https://github.com/VuloB1/ProjectFoxy/issues">Issues</a>
+    </span>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
