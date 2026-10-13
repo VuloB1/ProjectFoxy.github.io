@@ -104,10 +104,12 @@ h3 { margin: 0 0 8px; font-size: 19px; letter-spacing: -.01em; }
 
 /* tarjetas */
 .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.card { position: relative; padding: 30px; border: 1px solid var(--line); border-radius: var(--r); background: var(--card); transition: transform .35s var(--ease), border-color .25s, box-shadow .35s; }
+.card { position: relative; padding: 26px 28px; border: 1px solid var(--line); border-radius: var(--r); background: var(--card); transition: transform .35s var(--ease), border-color .25s, box-shadow .35s; }
 .card p { margin: 0; color: var(--mute); font-size: 16px; }
 .card.wide { grid-column: span 2; }
-.ico { display: block; margin-bottom: 18px; padding: 10px; width: 46px; height: 46px; border-radius: 13px; background: var(--accent-soft); color: var(--accent); transition: transform .4s var(--ease); }
+.ch { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.ch h3 { margin: 0; }
+.ico { flex: none; display: block; padding: 9px; width: 42px; height: 42px; border-radius: 13px; background: var(--accent-soft); color: var(--accent); transition: transform .4s var(--ease); }
 .card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); box-shadow: 0 24px 50px -28px rgba(0,0,0,.35); }
 .card:hover .ico { transform: scale(1.1) rotate(-6deg); }
 .spot::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%); }
@@ -213,3 +215,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .js .rise, .js [data-reveal] { opacity: 1; transform: none; }
   .hero-shot { transform: none; }
 }
+
+.hero-brand { display: inline-flex; align-items: center; gap: 18px; margin-bottom: 30px; font-size: clamp(26px, 4vw, 38px); font-weight: 700; letter-spacing: -.03em; }
+.hero-brand b { color: var(--accent); }
+.hero-brand img { width: clamp(56px, 8vw, 84px); height: auto; border-radius: 22%; box-shadow: 0 14px 34px -12px color-mix(in srgb, var(--accent) 60%, transparent); animation: float 5s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-6px) rotate(-3deg); } }
+.hero-brand { display: flex; justify-content: center; }
