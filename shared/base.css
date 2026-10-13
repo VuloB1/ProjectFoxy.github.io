@@ -60,7 +60,7 @@ b { font-weight: 650; }
 .hero { position: relative; overflow: hidden; padding: 88px 0 40px; text-align: center; }
 .glow { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55; pointer-events: none; }
 .g1 { width: 620px; height: 620px; left: 50%; top: -260px; margin-left: -520px; background: color-mix(in srgb, var(--accent) 40%, transparent); animation: drift 18s ease-in-out infinite alternate; }
-.g2 { width: 520px; height: 520px; left: 50%; top: -180px; margin-left: 60px; background: color-mix(in srgb, #ffb35c 32%, transparent); animation: drift 22s ease-in-out infinite alternate-reverse; }
+.g2 { width: 520px; height: 520px; left: 50%; top: -180px; margin-left: 60px; background: color-mix(in srgb, var(--accent2, #ffb35c) 32%, transparent); animation: drift 22s ease-in-out infinite alternate-reverse; }
 @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(60px, 50px) scale(1.15); } }
 .hero .wrap { position: relative; }
 .eyebrow { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 26px; padding: 7px 16px; border: 1px solid var(--line); border-radius: 99px; background: color-mix(in srgb, var(--card) 85%, transparent); font-size: 14px; color: var(--mute); backdrop-filter: blur(6px); }
@@ -68,7 +68,7 @@ b { font-weight: 650; }
 .dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: ping 2.2s ease-out infinite; }
 @keyframes ping { from { transform: scale(1); opacity: .7; } to { transform: scale(3.2); opacity: 0; } }
 h1 { margin: 0 auto; max-width: 13em; font-size: clamp(40px, 7vw, 76px); line-height: 1.04; letter-spacing: -.04em; font-weight: 750; }
-h1 em { font-style: normal; color: var(--accent); background: linear-gradient(100deg, var(--accent) 30%, #ffb35c 50%, var(--accent) 70%) 0 0/250% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: shine 6s ease-in-out infinite; }
+h1 em { font-style: normal; color: var(--accent); background: linear-gradient(100deg, var(--accent) 30%, var(--accent2, #ffb35c) 50%, var(--accent) 70%) 0 0/250% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: shine 6s ease-in-out infinite; }
 @keyframes shine { 0%, 40% { background-position: 100% 0; } 80%, 100% { background-position: 0 0; } }
 .lead { margin: 26px auto 0; max-width: 38em; font-size: clamp(18px, 2vw, 21px); color: var(--mute); }
 .cta { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
@@ -279,3 +279,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .fx-art i:nth-child(1) { width: 96px; height: 96px; } .fx-art i:nth-child(2) { width: 140px; height: 140px; } .fx-art i:nth-child(3) { display: none; }
   .fx-big { width: 64px; height: 64px; }
 }
+
+/* ruta de migas hacia la portada */
+.crumb { display: inline-flex; align-items: center; gap: 8px; margin-right: -8px; padding: 6px 10px; border-radius: 99px; color: var(--mute); font-size: 14px; text-decoration: none; transition: color .2s, background .2s; }
+.crumb:hover { color: var(--ink); background: var(--bg2); }
+.crumb::after { content: "/"; margin-left: 8px; opacity: .4; }
+@media (max-width: 560px) { .crumb { display: none; } }

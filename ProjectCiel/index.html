@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Ciel — tu compañera de IA local</title>
+<meta name="description" content="Project Ciel: una compañera de IA que vive en tu PC, con personalidad, memoria y voz, para chatear, hablar y hacer streaming. Sin suscripción.">
+<meta name="theme-color" content="#0d1113">
+<meta property="og:title" content="Project Ciel">
+<meta property="og:description" content="Project Ciel: una compañera de IA que vive en tu PC, con personalidad, memoria y voz, para chatear, hablar y hacer streaming. Sin suscripción.">
+<meta property="og:image" content="https://vulob1.github.io/ProjectCiel/img/cover.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="../shared/base.css">
+<link rel="stylesheet" href="../shared/extra.css">
+<style>
+  :root { --accent: #0d9488; --accent-ink: #ffffff; --accent-soft: #daf5f1; --accent2: #e0558f;
+    --bg: #f6fafa; --bg2: #ecf4f3; --card: #ffffff; --ink: #10201f; --mute: #587270; --line: #d8e6e4; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --accent: #7ff5e6; --accent-ink: #06201d; --accent-soft: #12302d;
+    --bg: #0d1113; --bg2: #12181a; --card: #161d20; --ink: #eaf4f3; --mute: #8fa5a3; --line: #233033; } }
+  :root[data-theme="dark"] { --accent: #7ff5e6; --accent-ink: #06201d; --accent-soft: #12302d;
+    --bg: #0d1113; --bg2: #12181a; --card: #161d20; --ink: #eaf4f3; --mute: #8fa5a3; --line: #233033; }
+</style>
+<script>
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  document.documentElement.classList.add('js');
+</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-radio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M4.9 4.9a10 10 0 0 0 0 14.2M19.1 4.9a10 10 0 0 1 0 14.2"/></symbol>
+<symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6 8h12v4a6 6 0 0 1-12 0zM12 18v3"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.4"/><circle cx="15" cy="17" r="2.4"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2.5-7 4 14 2.5-7h5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18-3-3-3-15 0-18z"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+</defs></svg>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="crumb" href="../">Vulito</a>
+    <a class="brand" href="#top"><img src="img/icon.png" alt="" width="28" height="28"><span>Project <b>Ciel</b></span></a>
+    <nav class="links" id="links">
+      <a data-i18n="c1" href="#capturas">Capturas</a>
+      <a data-i18n="c2" href="#funciones">Funciones</a>
+      <a data-i18n="c3" href="#conseguirlo">Conseguirlo</a>
+      <a data-i18n="c4" href="#tecnico">Técnico</a>
+      <a data-i18n="c5" href="#faq">Preguntas</a>
+    </nav>
+    <div class="tools">
+      <button class="chip-btn" id="lang" aria-label="Idioma / Language">EN</button>
+      <button class="chip-btn" id="theme" aria-label="Tema / Theme">◐</button>
+      <a class="chip-btn" href="https://github.com/VuloB1/project-ciel" aria-label="GitHub"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="glow g1" aria-hidden="true"></div>
+  <div class="glow g2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="logo-hero rise" style="--d:0"><img src="img/icon.png" alt="" width="84" height="84"><span>Project <b>Ciel</b></span></div>
+    <p class="eyebrow rise" style="--d:1"><span class="dot"></span><span data-i18n="c6">Para Windows · Pago único · Sin suscripción</span></p>
+    <h1 class="rise" data-i18n-html="c7" style="--d:2">Tu compañera de IA, <em>en tu propia PC</em>.</h1>
+    <p class="lead rise" data-i18n="c8" style="--d:3">Creá un personaje con personalidad, memoria y voz. Charlá con él, hablale en voz alta y llevalo a tu comunidad de Twitch o Discord. Sin cuenta que crear y sin servicio en la nube nuestro de por medio.</p>
+    <div class="cta rise" style="--d:4">
+      <a class="btn primary" href="https://vulito.itch.io/projectciel"><svg class="i" width="18" height="18"><use href="#i-down"/></svg><span data-i18n="c9">Conseguirlo en itch.io</span></a>
+      <a class="btn" data-i18n="c10" href="#funciones">Ver qué hace</a>
+    </div>
+    <p class="fine rise" data-i18n="c11" style="--d:5">Windows 10/11 de 64 bits · necesitás tu propio modelo de IA (local o con tus claves)</p>
+    <div class="stage rise" style="--d:6">
+      <figure class="window hero-shot" id="hero-shot"><img src="img/chat.webp" alt="" data-alt-es="Project Ciel: chat con un personaje" data-alt-en="Project Ciel: chatting with a character" width="1282" height="802" fetchpriority="high"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap stats-in" style="grid-template-columns: repeat(4, 1fr)">
+    <div data-reveal><b data-n="sliders"></b><span data-i18n="c12">controles de personalidad</span></div>
+    <div data-reveal><b data-n="themes"></b><span data-i18n="c13">temas</span></div>
+    <div data-reveal><b data-n="langs"></b><span data-i18n="c14">idiomas</span></div>
+    <div data-reveal><b data-n="subs"></b><span data-i18n="c15">suscripciones</span></div>
+  </div>
+</section>
+
+<section id="capturas" class="sec alt">
+  <div class="wrap">
+    <p class="kicker" data-i18n="c16" data-reveal>Capturas</p>
+    <h2 data-i18n="c17" data-reveal>Mirá cómo se ve</h2>
+    <p class="sub" data-i18n="c18" data-reveal>Las capturas muestran la interfaz en español; la aplicación está en {langs} idiomas.</p>
+    <div class="showcase" data-reveal>
+      <div class="tabs" role="tablist" id="shot-tabs">
+        <button role="tab" class="on" data-shot="chat.webp"><b data-i18n="c19">Chat</b><span data-i18n="c20">Conversaciones con historial, búsqueda y respuestas en vivo.</span></button>
+        <button role="tab" data-shot="identity.webp"><b data-i18n="c21">Identidad</b><span data-i18n="c22">Nombre, historia y {sliders} controles de personalidad.</span></button>
+        <button role="tab" data-shot="voice-call.webp"><b data-i18n="c23">Llamadas de voz</b><span data-i18n="c24">Hablás en tiempo real y tu personaje responde en voz alta.</span></button>
+        <button role="tab" data-shot="obs-avatar.webp"><b data-i18n="c25">Avatar para OBS</b><span data-i18n="c26">Imágenes de reposo, pensando y hablando, como fuente de navegador.</span></button>
+      </div>
+      <figure class="window big">
+        <div class="swap">
+          <img id="shot-a" class="show" src="img/chat.webp" alt="Chat" width="1282" height="802" loading="lazy">
+          <img id="shot-b" src="" alt="" width="1282" height="802">
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="funciones" class="sec compact">
+  <div class="wrap">
+    <p class="kicker" data-i18n="c27" data-reveal>Funciones</p>
+    <h2 data-i18n="c28" data-reveal>Un personaje que de verdad te conoce</h2>
+    <p class="sub" data-i18n="c29" data-reveal>Vos ponés la IA; Project Ciel la convierte en alguien con identidad, ánimo, memoria, voz y avatar.</p>
+    <div class="fx auto" id="fx">
+    <div class="fx-tabs" role="tablist">
+      <button role="tab" class="fx-tab on" data-i="0" aria-selected="true"><svg class="fi" width="20" height="20"><use href="#i-user"/></svg><span data-i18n="c30">Personajes</span></button>
+      <button role="tab" class="fx-tab" data-i="1" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-chat"/></svg><span data-i18n="c36">Chat</span></button>
+      <button role="tab" class="fx-tab" data-i="2" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-mic"/></svg><span data-i18n="c41">Llamadas de voz</span></button>
+      <button role="tab" class="fx-tab" data-i="3" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-clock"/></svg><span data-i18n="c45">Memoria</span></button>
+      <button role="tab" class="fx-tab" data-i="4" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-radio"/></svg><span data-i18n="c50">Twitch y Discord</span></button>
+      <button role="tab" class="fx-tab" data-i="5" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-plug"/></svg><span data-i18n="c54">Tu propia IA</span></button>
+      <button role="tab" class="fx-tab" data-i="6" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-sliders"/></svg><span data-i18n="c57">Personalizalo</span></button>
+      <button role="tab" class="fx-tab" data-i="7" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-lock"/></svg><span data-i18n="c62">Tus datos son tuyos</span></button>
+    </div>
+    <div class="fx-panels">
+      <div class="fx-panel on" role="tabpanel">
+        <div class="fx-text"><h3 data-i18n="c34">Personajes</h3><p data-i18n="c35">Nombre, historia y forma de hablar propios, con {sliders} controles de personalidad y un ánimo que cambia durante la charla.</p><p class="fx-chips"><span data-i18n="c31">Varios personajes</span><span data-i18n="c32">Un tema por personaje</span><span data-i18n="c33">Compartir como archivo</span></p></div>
+        <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-user"/></svg></div>
+      </div>
+      <div class="fx-panel" role="tabpanel">
+        <div class="fx-text"><h3 data-i18n="c39">Chat</h3><p data-i18n="c40">Conversaciones con historial, búsqueda, marcadores de no leído y chats fijados; respuestas en Markdown que aparecen mientras se escriben.</p><p class="fx-chips"><span data-i18n="c37">Imágenes</span><span>Markdown</span><span data-i18n="c38">Dictado por voz</span></p></div>
+        <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-chat"/></svg></div>
+      </div>
+      <div class="fx-panel" role="tabpanel">
+        <div class="fx-text"><h3 data-i18n="c43">Llamadas de voz</h3><p data-i18n="c44">Hablás en tiempo real: el reconocimiento de voz te escucha y tu personaje responde en voz alta, con medidor de micrófono, selector de salida y anti-eco.</p><p class="fx-chips"><span data-i18n="c42">Voz del sistema</span><span>ElevenLabs</span><span>OpenAI</span><span>Google Cloud</span><span>Azure</span></p></div>
+        <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-mic"/></svg></div>
+      </div>
+      <div class="fx-panel" role="tabpanel">
+        <div class="fx-text"><h3 data-i18n="c48">Memoria</h3><p data-i18n="c49">Recuerda lo importante de tus charlas, y vos decidís qué se guarda: revisalo, editalo o borralo, y marcalo como privado o público.</p><p class="fx-chips"><span data-i18n="c46">Privada o pública</span><span data-i18n="c47">Fusión de memorias</span></p></div>
+        <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-clock"/></svg></div>
+      </div>
+      <div class="fx-panel" role="tabpanel">
+        <div class="fx-text"><h3 data-i18n="c52">Twitch y Discord</h3><p data-i18n="c53">Responde en el chat de Twitch conociendo a los espectadores y con emotes, escribe en tu servidor de Discord y se ve en OBS con un avatar que reacciona.</p><p class="fx-chips"><span>7TV</span><span>BetterTTV</span><span>FrankerFaceZ</span><span data-i18n="c51">Avatar OBS</span></p></div>
+        <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-radio"/></svg></div>
+      </div>
+      <div class="fx-panel" role="tabpanel">
+        <div class="fx-text"><h3 data-i18n="c55">Tu propia IA</h3><p data-i18n="c56">Usá un modelo local (LM Studio, Ollama) o tus propias claves de OpenAI, Anthropic o Google Gemini, con respaldo automático si uno se queda sin crédito.</p><p class="fx-chips"><span>LM Studio</span><span>Ollama</span><span>OpenAI</span><span>Anthropic</span><span>Gemini</span></p></div>
+        <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-plug"/></svg></div>
+      </div>
+      <div class="fx-panel" role="tabpanel">
+        <div class="fx-text"><h3 data-i18n="c60">Personalizalo</h3><p data-i18n="c61">{themes} temas, modo claro y oscuro, color de acento, redondez, densidad y tipografía a tu gusto, en {langs} idiomas.</p><p class="fx-chips"><span data-i18n="c58">{themes} temas</span><span data-i18n="c59">{langs} idiomas</span></p></div>
+        <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-sliders"/></svg></div>
+      </div>
+      <div class="fx-panel" role="tabpanel">
+        <div class="fx-text"><h3 data-i18n="c65">Tus datos son tuyos</h3><p data-i18n="c66">Personajes, chats y memorias se guardan en tu PC; la aplicación no envía nada a su autor. Las claves van al almacén de credenciales de Windows.</p><p class="fx-chips"><span data-i18n="c63">Copias completas</span><span data-i18n="c64">Centro de diagnóstico</span></p></div>
+        <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-lock"/></svg></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section id="conseguirlo" class="sec alt">
+  <div class="wrap narrow center">
+    <p class="kicker" data-i18n="c67" data-reveal>Conseguirlo</p>
+    <h2 data-i18n="c68" data-reveal>Un solo pago, sin suscripción</h2>
+    <p class="sub" data-i18n="c69" data-reveal>Se vende en itch.io con las actualizaciones incluidas. Este sitio y su repositorio son una vitrina: el código y las descargas no se publican acá.</p>
+    <div class="cta" data-reveal>
+      <a class="btn primary" href="https://vulito.itch.io/projectciel"><svg class="i" width="18" height="18"><use href="#i-down"/></svg><span data-i18n="c70">Conseguirlo en itch.io</span></a>
+      <a class="btn" href="https://ko-fi.com/vulito"><span data-i18n="c71">Apoyar en Ko-fi</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="tecnico" class="sec tech">
+  <div class="wrap">
+    <p class="kicker" data-i18n="c72" data-reveal>Detalles técnicos</p>
+    <h2 data-i18n="c73" data-reveal>Para quien quiere los detalles</h2>
+    <p class="sub" data-i18n="c74" data-reveal>Requisitos, proveedores de IA y voz, integraciones, datos y limitaciones conocidas.</p>
+    <div class="tech-grid">
+      <div class="spec" data-reveal>
+        <h3 data-i18n="c75">Requisitos</h3>
+        <dl>
+          <div><dt data-i18n="c76">Sistema</dt><dd data-i18n-html="c77">Windows 10 u 11 de 64 bits.</dd></div>
+          <div><dt data-i18n="c78">IA</dt><dd data-i18n-html="c79">Un servidor de modelos local <b>o</b> tus propias claves. Project Ciel no incluye un modelo de IA.</dd></div>
+          <div><dt data-i18n="c80">Audio</dt><dd data-i18n-html="c81">Micrófono y parlantes o auriculares para las llamadas de voz.</dd></div>
+          <div><dt data-i18n="c82">Internet</dt><dd data-i18n-html="c83">Solo si usás IA o voces en la nube, búsqueda web, Twitch o Discord.</dd></div>
+        </dl>
+      </div>
+      <div class="spec" data-reveal>
+        <h3 data-i18n="c84">Proveedores de IA</h3>
+        <dl>
+          <div><dt data-i18n="c85">Local</dt><dd data-i18n-html="c86">LM Studio, Ollama o cualquier servidor que hable el formato de OpenAI.</dd></div>
+          <div><dt data-i18n="c87">Nube</dt><dd data-i18n-html="c88">OpenAI, Anthropic (Claude) y Google Gemini con tus propias claves.</dd></div>
+          <div><dt data-i18n="c89">Respaldo</dt><dd data-i18n-html="c90">Pasa solo al siguiente proveedor si uno se queda sin crédito.</dd></div>
+          <div><dt data-i18n="c91">Privacidad</dt><dd data-i18n-html="c92">Modo por proveedor: contexto completo, solo memorias públicas o mínimo; panel de uso y búsqueda web opcional.</dd></div>
+        </dl>
+      </div>
+      <div class="spec" data-reveal>
+        <h3 data-i18n="c93">Voz</h3>
+        <dl>
+          <div><dt data-i18n="c94">Voces</dt><dd data-i18n-html="c95">Del sistema (sin conexión), ElevenLabs, OpenAI, Google Cloud, Microsoft Azure o cualquier servidor de voz compatible con OpenAI.</dd></div>
+          <div><dt data-i18n="c96">Reconocimiento</dt><dd data-i18n-html="c97">En tiempo real durante la llamada, y dictado para el cuadro de mensaje.</dd></div>
+          <div><dt data-i18n="c98">Controles</dt><dd data-i18n-html="c99">Medidor de micrófono, selector de salida, anti-eco e historial de llamadas.</dd></div>
+        </dl>
+      </div>
+      <div class="spec" data-reveal>
+        <h3 data-i18n="c100">Streaming</h3>
+        <dl>
+          <div><dt data-i18n="c101">Twitch</dt><dd data-i18n-html="c102">Chat con emotes de 7TV, BetterTTV y FrankerFaceZ, y registro de espectadores para recordar a los habituales.</dd></div>
+          <div><dt data-i18n="c103">Discord</dt><dd data-i18n-html="c104">Chat de texto en tu servidor.</dd></div>
+          <div><dt data-i18n="c105">Memoria</dt><dd data-i18n-html="c106">En Twitch y Discord solo se usan las memorias <b>públicas</b>.</dd></div>
+          <div><dt data-i18n="c107">OBS</dt><dd data-i18n-html="c108">Avatar reactivo servido como fuente de navegador.</dd></div>
+        </dl>
+      </div>
+      <div class="spec" data-reveal>
+        <h3 data-i18n="c109">Datos y privacidad</h3>
+        <dl>
+          <div><dt data-i18n="c110">Almacenamiento</dt><dd data-i18n-html="c111">Personajes, chats, memorias y ajustes quedan en tu PC.</dd></div>
+          <div><dt data-i18n="c112">Envío</dt><dd data-i18n-html="c113">La aplicación no envía nada a su autor.</dd></div>
+          <div><dt data-i18n="c114">Claves</dt><dd data-i18n-html="c115">Se guardan en el almacén de credenciales de Windows.</dd></div>
+          <div><dt data-i18n="c116">Copias</dt><dd data-i18n-html="c117">Copias completas en un solo archivo y un centro de diagnóstico que revisa tu configuración sin exponer secretos.</dd></div>
+        </dl>
+      </div>
+      <div class="spec" data-reveal>
+        <h3 data-i18n="c118">Limitaciones y detalles</h3>
+        <dl>
+          <div><dt data-i18n="c119">Plataforma</dt><dd data-i18n-html="c120">Solo Windows por ahora.</dd></div>
+          <div><dt data-i18n="c121">Llamadas</dt><dd data-i18n-html="c122">Los ruidos fuertes del teclado a veces se captan como voz; con auriculares mejora. El anti-eco reduce el retorno, pero no es una cancelación de eco real.</dd></div>
+          <div><dt data-i18n="c123">Discord</dt><dd data-i18n-html="c124">Solo texto, todavía sin canales de voz.</dd></div>
+          <div><dt data-i18n="c125">Instalador</dt><dd data-i18n-html="c126">Todavía sin firma de código: Windows SmartScreen puede avisar la primera vez (<em>Más información → Ejecutar de todas formas</em>).</dd></div>
+          <div><dt data-i18n="c127">Tecnología</dt><dd data-i18n-html="c128">Tauri, Rust, React y TypeScript.</dd></div>
+          <div><dt data-i18n="c129">Transparencia</dt><dd data-i18n-html="c130">Parte del arte se creó con IA generativa y el software se desarrolló con ayuda de Claude (Anthropic); la dirección de diseño, las pruebas y las decisiones son del autor.</dd></div>
+          <div><dt data-i18n="c131">Licencia</dt><dd data-i18n-html="c132">Software propietario, todos los derechos reservados; su uso se rige por su contrato de licencia de usuario final.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="sec alt">
+  <div class="wrap narrow">
+    <p class="kicker" data-i18n="c133" data-reveal>Dudas</p>
+    <h2 data-i18n="c134" data-reveal>Preguntas frecuentes</h2>
+    <div class="faq" data-reveal>
+      <details><summary data-i18n="c135">¿Incluye un modelo de IA?</summary><div><p data-i18n-html="c136">No. Vos elegís el tuyo: uno local (LM Studio, Ollama) o tus propias claves de OpenAI, Anthropic o Google Gemini.</p></div></details>
+      <details><summary data-i18n="c137">¿Cuánto cuesta?</summary><div><p data-i18n-html="c138">Es un pago único en itch.io, sin suscripción y con las actualizaciones incluidas.</p></div></details>
+      <details><summary data-i18n="c139">¿Mis datos van a algún lado?</summary><div><p data-i18n-html="c140">Se guardan en tu PC y la aplicación no envía nada a su autor. Si usás IA en la nube, tus mensajes van a ese proveedor según el modo de privacidad que elijas.</p></div></details>
+      <details><summary data-i18n="c141">¿Funciona sin internet?</summary><div><p data-i18n-html="c142">Sí, con un modelo local y las voces del sistema. Internet solo hace falta para servicios en la nube, Twitch y Discord.</p></div></details>
+      <details><summary data-i18n="c143">¿Por qué Windows me avisa al instalarlo?</summary><div><p data-i18n-html="c144">El instalador todavía no tiene firma de código. Elegí «Más información → Ejecutar de todas formas».</p></div></details>
+      <details><summary data-i18n="c145">¿Hay versión para Mac o Linux?</summary><div><p data-i18n-html="c146">Por ahora solo para Windows 10 y 11.</p></div></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="brand"><img src="img/icon.png" alt="" width="22" height="22"><span>Project <b>Ciel</b></span></span>
+    <span data-i18n="c147">Software propietario · © 2026 Vulito</span>
+    <span class="flinks">
+      <a data-i18n="c148" href="../">Más proyectos</a>
+      <a href="https://vulito.itch.io/projectciel">itch.io</a>
+      <a href="https://ko-fi.com/vulito">Ko-fi</a>
+      <a href="https://github.com/VuloB1/project-ciel">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+  window.EN = {
+ "c1": "Screenshots",
+ "c2": "Features",
+ "c3": "Get it",
+ "c4": "Technical",
+ "c5": "FAQ",
+ "c6": "For Windows · One-time purchase · No subscription",
+ "c7": "Your AI companion, <em>on your own PC</em>.",
+ "c8": "Create a character with its own personality, memory and voice. Chat with it, talk to it out loud and bring it to your Twitch or Discord community. No account to create and no cloud service of ours in the middle.",
+ "c9": "Get it on itch.io",
+ "c10": "See what it does",
+ "c11": "Windows 10/11 64-bit · you bring your own AI model (local or with your keys)",
+ "c12": "personality sliders",
+ "c13": "themes",
+ "c14": "languages",
+ "c15": "subscriptions",
+ "c16": "Screenshots",
+ "c17": "See how it looks",
+ "c18": "The screenshots show the Spanish interface; the app is available in {langs} languages.",
+ "c19": "Chat",
+ "c20": "Conversations with history, search and live replies.",
+ "c21": "Identity",
+ "c22": "Name, backstory and {sliders} personality sliders.",
+ "c23": "Voice calls",
+ "c24": "You talk in real time and your character answers out loud.",
+ "c25": "OBS avatar",
+ "c26": "Idle, thinking and talking images, as a browser source.",
+ "c27": "Features",
+ "c28": "A character that really knows you",
+ "c29": "You bring the AI; Project Ciel turns it into someone with identity, mood, memory, voice and an avatar.",
+ "c30": "Characters",
+ "c31": "Multiple characters",
+ "c32": "A theme per character",
+ "c33": "Share as a file",
+ "c34": "Characters",
+ "c35": "Its own name, backstory and speaking style, with {sliders} personality sliders and a mood that shifts during the conversation.",
+ "c36": "Chat",
+ "c37": "Images",
+ "c38": "Voice dictation",
+ "c39": "Chat",
+ "c40": "Conversations with history, search, unread markers and pinned chats; Markdown replies that stream as they are written.",
+ "c41": "Voice calls",
+ "c42": "System voice",
+ "c43": "Voice calls",
+ "c44": "Talk in real time: speech recognition listens and your character answers out loud, with a microphone meter, output selector and echo guard.",
+ "c45": "Memory",
+ "c46": "Private or public",
+ "c47": "Memory fusion",
+ "c48": "Memory",
+ "c49": "It remembers what matters from your chats, and you decide what is kept: review, edit or delete it, and mark it private or public.",
+ "c50": "Twitch and Discord",
+ "c51": "OBS avatar",
+ "c52": "Twitch and Discord",
+ "c53": "It replies in Twitch chat knowing the viewers and with emotes, writes in your Discord server and shows in OBS with a reactive avatar.",
+ "c54": "Bring your own AI",
+ "c55": "Bring your own AI",
+ "c56": "Use a local model (LM Studio, Ollama) or your own OpenAI, Anthropic or Google Gemini keys, with automatic fallback if one runs out of credit.",
+ "c57": "Make it yours",
+ "c58": "{themes} themes",
+ "c59": "{langs} languages",
+ "c60": "Make it yours",
+ "c61": "{themes} themes, light and dark modes, accent color, roundness, density and font to your taste, in {langs} languages.",
+ "c62": "Your data stays with you",
+ "c63": "Full backups",
+ "c64": "Diagnostics center",
+ "c65": "Your data stays with you",
+ "c66": "Characters, chats and memories are stored on your PC; the app sends nothing to its author. Keys go to the Windows credential store.",
+ "c67": "Get it",
+ "c68": "One purchase, no subscription",
+ "c69": "It is sold on itch.io with updates included. This site and its repository are a showcase: the source code and the downloads are not published here.",
+ "c70": "Get it on itch.io",
+ "c71": "Support on Ko-fi",
+ "c72": "Technical details",
+ "c73": "For those who want the details",
+ "c74": "Requirements, AI and voice providers, integrations, data and known limitations.",
+ "c75": "Requirements",
+ "c76": "System",
+ "c77": "Windows 10 or 11, 64-bit.",
+ "c78": "AI",
+ "c79": "A local model server <b>or</b> your own API keys. Project Ciel does not include an AI model.",
+ "c80": "Audio",
+ "c81": "A microphone and speakers or headphones for voice calls.",
+ "c82": "Internet",
+ "c83": "Only if you use cloud AI or voices, web search, Twitch or Discord.",
+ "c84": "AI providers",
+ "c85": "Local",
+ "c86": "LM Studio, Ollama or any server that speaks the OpenAI format.",
+ "c87": "Cloud",
+ "c88": "OpenAI, Anthropic (Claude) and Google Gemini with your own keys.",
+ "c89": "Fallback",
+ "c90": "Moves on to the next provider by itself if one runs out of credit.",
+ "c91": "Privacy",
+ "c92": "Mode per provider: full context, public memories only, or minimal; usage panel and optional web search.",
+ "c93": "Voice",
+ "c94": "Voices",
+ "c95": "System (offline), ElevenLabs, OpenAI, Google Cloud, Microsoft Azure or any OpenAI-compatible speech server.",
+ "c96": "Recognition",
+ "c97": "Real time during the call, and dictation for the message box.",
+ "c98": "Controls",
+ "c99": "Microphone meter, output selector, echo guard and call history.",
+ "c100": "Streaming",
+ "c101": "Twitch",
+ "c102": "Chat with 7TV, BetterTTV and FrankerFaceZ emotes, and a viewer registry to remember regular chatters.",
+ "c103": "Discord",
+ "c104": "Text chat in your server.",
+ "c105": "Memory",
+ "c106": "On Twitch and Discord only <b>public</b> memories are used.",
+ "c107": "OBS",
+ "c108": "A reactive avatar served as a browser source.",
+ "c109": "Data and privacy",
+ "c110": "Storage",
+ "c111": "Characters, chats, memories and settings stay on your PC.",
+ "c112": "Sending",
+ "c113": "The app does not send anything to its author.",
+ "c114": "Keys",
+ "c115": "Kept in the Windows credential store.",
+ "c116": "Backups",
+ "c117": "Full backups to a single file and a diagnostics center that checks your setup without exposing secrets.",
+ "c118": "Limitations and notes",
+ "c119": "Platform",
+ "c120": "Windows only for now.",
+ "c121": "Calls",
+ "c122": "Loud keyboard noises can sometimes be picked up as speech; headphones help. The echo guard reduces feedback but is not true echo cancellation.",
+ "c123": "Discord",
+ "c124": "Text only, no voice channels yet.",
+ "c125": "Installer",
+ "c126": "Not code-signed yet: Windows SmartScreen may warn the first time (<em>More info → Run anyway</em>).",
+ "c127": "Technology",
+ "c128": "Tauri, Rust, React and TypeScript.",
+ "c129": "Transparency",
+ "c130": "Parts of the artwork were created with generative AI, and the software was developed with the help of Claude (Anthropic); design direction, testing and decisions are the author’s.",
+ "c131": "License",
+ "c132": "Proprietary software, all rights reserved; its use is governed by its End User License Agreement.",
+ "c133": "Questions",
+ "c134": "Frequently asked questions",
+ "c135": "Does it include an AI model?",
+ "c136": "No. You pick yours: a local one (LM Studio, Ollama) or your own OpenAI, Anthropic or Google Gemini keys.",
+ "c137": "How much does it cost?",
+ "c138": "It is a one-time purchase on itch.io, with no subscription and updates included.",
+ "c139": "Does my data go anywhere?",
+ "c140": "It is stored on your PC and the app sends nothing to its author. If you use cloud AI, your messages go to that provider according to the privacy mode you pick.",
+ "c141": "Does it work offline?",
+ "c142": "Yes, with a local model and the system voices. The internet is only needed for cloud services, Twitch and Discord.",
+ "c143": "Why does Windows warn me when installing?",
+ "c144": "The installer does not have a code-signing certificate yet. Choose “More info → Run anyway”.",
+ "c145": "Is there a Mac or Linux version?",
+ "c146": "For now only for Windows 10 and 11.",
+ "c147": "Proprietary software · © 2026 Vulito",
+ "c148": "More projects",
+ "page.title": "Project Ciel — your local AI companion"
+};
+  window.NUMBERS = {"sliders": 19, "themes": 15, "langs": 6, "subs": 0};
+</script>
+<script src="../shared/site.js"></script>
+</body>
+</html>

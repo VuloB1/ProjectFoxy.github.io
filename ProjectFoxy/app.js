@@ -58,6 +58,7 @@
     'shots.viewer.d': 'Thumbnails, GPU zoom and everything at hand.', 'shots.effects.d': '{effects} effects with a preview over the whole image.', 'shots.adjust.d': '{adjust} controls, levels, curves and histogram.',
     'shots.filters.d': '{looks} “looks” with thumbnails of your photo.', 'shots.gif.d': 'Animations with transitions and text.', 'shots.collage.d': 'Grid or free layouts, no limits.', 'shots.compare.d': 'Up to {compare} images with linked zoom.',
     'fmt.raw': 'Camera RAW', 'fmt.anim': 'Animated GIF · APNG · WebP', 'fmt.webpa': 'Animated WebP',
+    'foot.more': 'More projects',
     'foot.lic': 'GPL-3.0-or-later · © 2026 Vulito'
   };
   Object.assign(EN, {
