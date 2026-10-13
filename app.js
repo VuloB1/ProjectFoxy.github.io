@@ -61,6 +61,25 @@
     'foot.lic': 'GPL-3.0-or-later · © 2026 Vulito'
   };
   Object.assign(EN, {
+    "fc.1.0": "Crop",
+    "fc.1.1": "Adjustments",
+    "fc.1.2": "Filters",
+    "fc.1.3": "Effects",
+    "fc.1.4": "Lens",
+    "fc.2.3": "Transitions",
+    "fc.2.4": "Text",
+    "fc.3.0": "1–12 photos",
+    "fc.3.1": "Grid",
+    "fc.3.2": "Free",
+    "fc.3.3": "Your own templates",
+    "fc.4.0": "2–10 images",
+    "fc.4.1": "Linked zoom",
+    "fc.6.0": "Atomic",
+    "fc.6.2": "Background",
+    "fc.7.6": "4 themes",
+    "fc.8.0": "Eyedropper",
+    "fc.8.2": "Batch",
+    "fc.8.3": "Smooth zoom",
     "f.viewer.p": "JPEG, PNG, WebP, TIFF, HEIC, AVIF and RAW instantly, with thumbnails and GPU zoom.",
     "f.editor.p": "Crop, adjustments, filters, effects and lens. Undo and redo for everything.",
     "f.gif.p": "Animations with transitions and text, as GIF, APNG or WebP.",
@@ -272,6 +291,34 @@
   }
   addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
+
+
+  // ---- Features: tabs that advance on their own until the visitor takes over ----
+  (function () {
+    var box = document.getElementById('fx'); if (!box) return;
+    var tabs = [].slice.call(box.querySelectorAll('.fx-tab')), panels = [].slice.call(box.querySelectorAll('.fx-panel'));
+    var cur = 0, timer = 0, seen = false;
+    function pick(i) {
+      cur = i;
+      tabs.forEach(function (t, k) { t.classList.toggle('on', k === i); t.setAttribute('aria-selected', k === i); });
+      panels.forEach(function (p, k) { p.classList.toggle('on', k === i); });
+      var t = tabs[i], bar = t.parentNode;
+      if (bar.scrollWidth > bar.clientWidth) bar.scrollTo({ left: t.offsetLeft - bar.clientWidth / 2 + t.clientWidth / 2, behavior: 'smooth' });
+    }
+    function stop() { clearTimeout(timer); box.classList.remove('auto'); }
+    function tick() { timer = setTimeout(function () { pick((cur + 1) % tabs.length); tick(); }, 6000); }
+    tabs.forEach(function (t) { t.addEventListener('click', function () { stop(); pick(+t.dataset.i); }); });
+    box.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      stop(); pick((cur + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length); tabs[cur].focus();
+    });
+    if (still || !('IntersectionObserver' in window)) { box.classList.remove('auto'); return; }
+    new IntersectionObserver(function (l) {
+      if (!box.classList.contains('auto')) return;
+      clearTimeout(timer);
+      if (l[0].isIntersecting) { box.classList.add('run'); tick(); } else box.classList.remove('run');
+    }, { threshold: .4 }).observe(box);
+  })();
 
   // Light that follows the cursor on the cards.
   document.querySelectorAll('.spot').forEach(function (c) {
