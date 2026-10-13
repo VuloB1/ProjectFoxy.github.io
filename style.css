@@ -221,3 +221,25 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .hero-brand img { width: clamp(56px, 8vw, 84px); height: auto; border-radius: 22%; box-shadow: 0 14px 34px -12px color-mix(in srgb, var(--accent) 60%, transparent); animation: float 5s ease-in-out infinite; }
 @keyframes float { 50% { transform: translateY(-6px) rotate(-3deg); } }
 .hero-brand { display: flex; justify-content: center; }
+
+/* funciones compactas */
+.compact .sub { margin-bottom: 36px; }
+.compact .card { padding: 20px 22px; }
+.compact .card p { font-size: 15px; }
+.compact .grid { gap: 14px; }
+
+/* detalles técnicos: denso */
+.tech { font-size: 15px; }
+.tech .sub { margin-bottom: 40px; }
+.tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 56px; }
+.spec.full { grid-column: 1 / -1; }
+.spec h3 { margin: 0 0 10px; padding-bottom: 10px; border-bottom: 2px solid var(--accent); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); }
+.spec dl { margin: 0; }
+.spec dl > div { display: grid; grid-template-columns: 128px 1fr; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line); line-height: 1.5; }
+.spec.full dl > div { grid-template-columns: 128px 1fr; }
+.spec dt { font-weight: 650; color: var(--ink); }
+.spec dd { margin: 0; color: var(--mute); }
+.spec dd b { color: var(--ink); }
+.spec code { padding: 1px 6px; border-radius: 6px; background: var(--bg2); border: 1px solid var(--line); font-size: .9em; }
+@media (max-width: 900px) { .tech-grid { grid-template-columns: 1fr; gap: 32px; } }
+@media (max-width: 520px) { .spec dl > div { grid-template-columns: 1fr; gap: 2px; } }
