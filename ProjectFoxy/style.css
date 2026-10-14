@@ -120,7 +120,7 @@ h3 { margin: 0 0 8px; font-size: 19px; letter-spacing: -.01em; }
 /* capturas */
 .showcase { display: grid; grid-template-columns: 300px 1fr; gap: 32px; align-items: start; }
 .tabs { display: grid; gap: 6px; position: sticky; top: 90px; }
-.tabs button { position: relative; text-align: left; padding: 14px 18px; border: 1px solid transparent; border-radius: 14px; background: transparent; color: var(--mute); font: inherit; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+.tabs button { position: relative; text-align: left; padding: 11px 18px; border: 1px solid transparent; border-radius: 14px; background: transparent; color: var(--mute); font: inherit; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
 .tabs button b { display: block; font-size: 16px; color: var(--ink); }
 .tabs button span { display: block; max-height: 0; overflow: hidden; opacity: 0; font-size: 14px; line-height: 1.45; transition: max-height .4s var(--ease), opacity .3s, margin .3s; }
 .tabs button:hover { background: color-mix(in srgb, var(--card) 70%, transparent); }
