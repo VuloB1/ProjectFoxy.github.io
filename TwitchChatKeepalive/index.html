@@ -75,8 +75,8 @@
     <h1 class="rise" data-i18n-html="t7" style="--d:2">Un chat de Twitch que <em>no se congela</em>.</h1>
     <p class="lead rise" data-i18n="t8" style="--d:3">Evita que el chat se quede sin mensajes y se reconecte en Firefox cuando hay poca actividad. Se instala y funciona: sin ajustes ni botones.</p>
     <div class="cta rise" style="--d:4">
-      <a class="btn primary" href="https://github.com/VuloB1/twitch-chat-keepalive"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span data-i18n="t9">Ver en GitHub</span></a>
-      <a class="btn" data-i18n="t10" href="#instalar">Cómo instalarla</a>
+      <a class="btn primary" href="https://addons.mozilla.org/firefox/addon/twitch-chat-keepalive/"><svg class="i" width="18" height="18"><use href="#i-down"/></svg><span data-i18n="t9">Añadir a Firefox</span></a>
+      <a class="btn" href="https://github.com/VuloB1/twitch-chat-keepalive"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span data-i18n="t10">Ver el código</span></a>
     </div>
     <p class="fine rise" data-i18n="t11" style="--d:5">Firefox 140+ (Android 142+) · también Waterfox, LibreWolf y otros basados en Firefox</p>
     <div class="rise" style="--d:6">
@@ -129,7 +129,7 @@
     <div class="grid" style="grid-template-columns: repeat(3, 1fr)">
       <article class="card" data-reveal><div class="ch"><svg class="ico" width="26" height="26"><use href="#i-shield"/></svg><h3 data-i18n="t37">Privacidad</h3></div><p data-i18n-html="t38">No recopila, guarda ni envía datos. No hace peticiones propias y solo corre en <code>twitch.tv</code>.</p></article>
       <article class="card" data-reveal><div class="ch"><svg class="ico" width="26" height="26"><use href="#i-bolt"/></svg><h3 data-i18n="t39">Sin ajustes</h3></div><p data-i18n="t40">Se instala y funciona. No hay botones, ventanas ni nada que configurar.</p></article>
-      <article class="card" data-reveal><div class="ch"><svg class="ico" width="26" height="26"><use href="#i-code"/></svg><h3 data-i18n="t41">Código abierto</h3></div><p data-i18n="t42">Licencia MIT. Es tan corta que podés leerla entera antes de instalarla.</p></article>
+      <article class="card" data-reveal><div class="ch"><svg class="ico" width="26" height="26"><use href="#i-code"/></svg><h3 data-i18n="t41">Código abierto</h3></div><p data-i18n="t42">Licencia MIT. Es tan corta que puedes leerla entera antes de instalarla.</p></article>
     </div>
   </div>
 </section>
@@ -139,13 +139,16 @@
     <p class="kicker" data-i18n="t43" data-reveal>Instalar</p>
     <h2 data-i18n="t44" data-reveal>Cómo instalarla</h2>
     <p class="sub" data-i18n="t45" data-reveal>Funciona en Firefox 140 o más nuevo (Firefox para Android, 142+), y en Waterfox, LibreWolf y otros navegadores basados en Firefox.</p>
-    <div class="note-box" data-reveal><span data-i18n-html="t46"><b>Firefox Add-ons:</b> el enlace se agregará cuando se apruebe la ficha. Mientras tanto se puede probar de forma temporal, como se explica abajo.</span></div>
-    <h3 style="margin-top:36px" data-reveal><span data-i18n="t47">Instalación temporal (para probar)</span></h3>
+    <div class="cta" data-reveal style="justify-content:flex-start; margin: 4px 0 8px">
+      <a class="btn primary" href="https://addons.mozilla.org/firefox/addon/twitch-chat-keepalive/"><svg class="i" width="18" height="18"><use href="#i-down"/></svg><span data-i18n="t46">Instalar desde Firefox Add-ons</span></a>
+    </div>
+    <p class="note" data-reveal><span data-i18n="t47">La ficha oficial en Mozilla es la forma recomendada: se actualiza sola.</span></p>
+    <h3 style="margin-top:36px" data-reveal><span data-i18n="t48">Instalación manual (para probar el código)</span></h3>
     <div data-reveal style="margin-top:12px">
       <div class="steps" style="grid-template-columns: 1fr; gap: 12px; border:0">
-        <div><p data-i18n-html="t48">Descargá el código desde <a href="https://github.com/VuloB1/twitch-chat-keepalive/archive/refs/heads/main.zip">GitHub</a> y descomprimilo.</p></div>
-        <div><p data-i18n="t49">En Firefox abrí esta dirección:</p><pre data-copy><code>about:debugging#/runtime/this-firefox</code></pre></div>
-        <div><p data-i18n-html="t50">Tocá <b>Cargar complemento temporal…</b> y elegí el archivo <code>manifest.json</code>. Se desactiva al cerrar el navegador.</p></div>
+        <div><p data-i18n-html="t49">Descarga el código desde <a href="https://github.com/VuloB1/twitch-chat-keepalive/archive/refs/heads/main.zip">GitHub</a> y descomprímelo.</p></div>
+        <div><p data-i18n="t50">En Firefox abre esta dirección:</p><pre data-copy><code>about:debugging#/runtime/this-firefox</code></pre></div>
+        <div><p data-i18n-html="t51">Pulsa <b>Cargar complemento temporal…</b> y elige el archivo <code>manifest.json</code>. Se desactiva al cerrar el navegador.</p></div>
       </div>
     </div>
   </div>
@@ -153,40 +156,40 @@
 
 <section id="tecnico" class="sec tech alt">
   <div class="wrap">
-    <p class="kicker" data-i18n="t51" data-reveal>Detalles técnicos</p>
-    <h2 data-i18n="t52" data-reveal>Para quien quiere los detalles</h2>
+    <p class="kicker" data-i18n="t52" data-reveal>Detalles técnicos</p>
+    <h2 data-i18n="t53" data-reveal>Para quien quiere los detalles</h2>
     <div class="tech-grid" style="margin-top:40px">
       <div class="spec" data-reveal>
-        <h3 data-i18n="t53">Parámetros</h3>
+        <h3 data-i18n="t54">Parámetros</h3>
         <dl>
-          <div><dt data-i18n="t54">PING</dt><dd data-i18n-html="t55"><code>PING :tmi.twitch.tv</code> cada {ping} segundos.</dd></div>
-          <div><dt data-i18n="t56">Vigilancia</dt><dd data-i18n-html="t57">Revisa cada 5 segundos; sin ningún dato entrante en {dead} segundos, cierra el socket.</dd></div>
-          <div><dt data-i18n="t58">Cierre colgado</dt><dd data-i18n-html="t59">Si Firefox no dispara el evento <code>close</code> de un socket colgado, la extensión lo dispara a mano a los 1,5 s.</dd></div>
-          <div><dt data-i18n="t60">Alcance</dt><dd data-i18n-html="t61">Solo conexiones a <code>wss://irc-ws.chat.twitch.tv</code>.</dd></div>
+          <div><dt data-i18n="t55">PING</dt><dd data-i18n-html="t56"><code>PING :tmi.twitch.tv</code> cada {ping} segundos.</dd></div>
+          <div><dt data-i18n="t57">Vigilancia</dt><dd data-i18n-html="t58">Revisa cada 5 segundos; sin ningún dato entrante en {dead} segundos, cierra el socket.</dd></div>
+          <div><dt data-i18n="t59">Cierre colgado</dt><dd data-i18n-html="t60">Si Firefox no dispara el evento <code>close</code> de un socket colgado, la extensión lo dispara a mano a los 1,5 s.</dd></div>
+          <div><dt data-i18n="t61">Alcance</dt><dd data-i18n-html="t62">Solo conexiones a <code>wss://irc-ws.chat.twitch.tv</code>.</dd></div>
         </dl>
       </div>
       <div class="spec" data-reveal>
-        <h3 data-i18n="t62">Compatibilidad</h3>
+        <h3 data-i18n="t63">Compatibilidad</h3>
         <dl>
-          <div><dt data-i18n="t63">Navegadores</dt><dd data-i18n-html="t64">Firefox 140+, Firefox para Android 142+, Waterfox, LibreWolf y similares.</dd></div>
-          <div><dt data-i18n="t65">Manifest</dt><dd data-i18n-html="t66">Versión 2.</dd></div>
-          <div><dt data-i18n="t67">Permisos</dt><dd data-i18n-html="t68">Solo se ejecuta en <code>*.twitch.tv</code>.</dd></div>
-          <div><dt data-i18n="t69">Datos</dt><dd data-i18n-html="t70">Declara que no recopila datos (<code>data_collection_permissions: none</code>).</dd></div>
+          <div><dt data-i18n="t64">Navegadores</dt><dd data-i18n-html="t65">Firefox 140+, Firefox para Android 142+, Waterfox, LibreWolf y similares.</dd></div>
+          <div><dt data-i18n="t66">Manifest</dt><dd data-i18n-html="t67">Versión 2.</dd></div>
+          <div><dt data-i18n="t68">Permisos</dt><dd data-i18n-html="t69">Solo se ejecuta en <code>*.twitch.tv</code>.</dd></div>
+          <div><dt data-i18n="t70">Datos</dt><dd data-i18n-html="t71">Declara que no recopila datos (<code>data_collection_permissions: none</code>).</dd></div>
         </dl>
       </div>
       <div class="spec" data-reveal>
-        <h3 data-i18n="t71">Archivos</h3>
+        <h3 data-i18n="t72">Archivos</h3>
         <dl>
-          <div><dt data-i18n="t72">content.js</dt><dd data-i18n-html="t73">Se ejecuta en <code>document_start</code> e inyecta <code>inject.js</code>.</dd></div>
-          <div><dt data-i18n="t74">inject.js</dt><dd data-i18n-html="t75">Envuelve <code>window.WebSocket</code> en el contexto de la página.</dd></div>
-          <div><dt data-i18n="t76">Compilación</dt><dd data-i18n-html="t77">Ninguna para usarla. Para empaquetar: <code>npx web-ext lint</code> y <code>npx web-ext build</code>.</dd></div>
+          <div><dt data-i18n="t73">content.js</dt><dd data-i18n-html="t74">Se ejecuta en <code>document_start</code> e inyecta <code>inject.js</code>.</dd></div>
+          <div><dt data-i18n="t75">inject.js</dt><dd data-i18n-html="t76">Envuelve <code>window.WebSocket</code> en el contexto de la página.</dd></div>
+          <div><dt data-i18n="t77">Compilación</dt><dd data-i18n-html="t78">Ninguna para usarla. Para empaquetar: <code>npx web-ext lint</code> y <code>npx web-ext build</code>.</dd></div>
         </dl>
       </div>
       <div class="spec" data-reveal>
-        <h3 data-i18n="t78">Licencia</h3>
+        <h3 data-i18n="t79">Licencia</h3>
         <dl>
-          <div><dt data-i18n="t79">Licencia</dt><dd data-i18n-html="t80">MIT.</dd></div>
-          <div><dt data-i18n="t81">Código</dt><dd data-i18n-html="t82"><a href="https://github.com/VuloB1/twitch-chat-keepalive">github.com/VuloB1/twitch-chat-keepalive</a></dd></div>
+          <div><dt data-i18n="t80">Licencia</dt><dd data-i18n-html="t81">MIT.</dd></div>
+          <div><dt data-i18n="t82">Código</dt><dd data-i18n-html="t83"><a href="https://github.com/VuloB1/twitch-chat-keepalive">github.com/VuloB1/twitch-chat-keepalive</a></dd></div>
         </dl>
       </div>
     </div>
@@ -195,14 +198,14 @@
 
 <section id="faq" class="sec">
   <div class="wrap narrow">
-    <p class="kicker" data-i18n="t83" data-reveal>Dudas</p>
-    <h2 data-i18n="t84" data-reveal>Preguntas frecuentes</h2>
+    <p class="kicker" data-i18n="t84" data-reveal>Dudas</p>
+    <h2 data-i18n="t85" data-reveal>Preguntas frecuentes</h2>
     <div class="faq" data-reveal>
-      <details><summary data-i18n="t85">¿Recupera los mensajes que ya se perdieron?</summary><div><p data-i18n-html="t86">No. Evita las desconexiones para que no se pierdan, pero no puede recuperar lo que se perdió antes.</p></div></details>
-      <details><summary data-i18n="t87">¿Funciona en Chrome?</summary><div><p data-i18n-html="t88">No hace falta: el problema es de Firefox y esta extensión es solo para Firefox y los navegadores basados en él.</p></div></details>
-      <details><summary data-i18n="t89">¿Recopila datos?</summary><div><p data-i18n-html="t90">No. No recopila, guarda ni envía nada, y no hace peticiones de red propias.</p></div></details>
-      <details><summary data-i18n="t91">¿Afecta a otras páginas o conexiones?</summary><div><p data-i18n-html="t92">No. Solo se ejecuta en twitch.tv y solo toca el WebSocket del chat; cualquier otra conexión pasa sin cambios.</p></div></details>
-      <details><summary data-i18n="t93">¿Cómo reporto un problema?</summary><div><p data-i18n-html="t94">Abrí un issue en <a href="https://github.com/VuloB1/twitch-chat-keepalive/issues">GitHub</a>.</p></div></details>
+      <details><summary data-i18n="t86">¿Recupera los mensajes que ya se perdieron?</summary><div><p data-i18n-html="t87">No. Evita las desconexiones para que no se pierdan, pero no puede recuperar lo que se perdió antes.</p></div></details>
+      <details><summary data-i18n="t88">¿Funciona en Chrome?</summary><div><p data-i18n-html="t89">No hace falta: el problema es de Firefox y esta extensión es solo para Firefox y los navegadores basados en él.</p></div></details>
+      <details><summary data-i18n="t90">¿Recopila datos?</summary><div><p data-i18n-html="t91">No. No recopila, guarda ni envía nada, y no hace peticiones de red propias.</p></div></details>
+      <details><summary data-i18n="t92">¿Afecta a otras páginas o conexiones?</summary><div><p data-i18n-html="t93">No. Solo se ejecuta en twitch.tv y solo toca el WebSocket del chat; cualquier otra conexión pasa sin cambios.</p></div></details>
+      <details><summary data-i18n="t94">¿Cómo reporto un problema?</summary><div><p data-i18n-html="t95">Abre un issue en <a href="https://github.com/VuloB1/twitch-chat-keepalive/issues">GitHub</a>.</p></div></details>
     </div>
   </div>
 </section>
@@ -211,9 +214,9 @@
 <footer class="foot">
   <div class="wrap foot-in">
     <span class="brand"><img src="img/icon.png" alt="" width="22" height="22"><span>Twitch Chat <b>Keepalive</b></span></span>
-    <span data-i18n="t95">Licencia MIT · © 2026 Vulito</span>
+    <span data-i18n="t96">Licencia MIT · © 2026 Vulito</span>
     <span class="flinks">
-      <a data-i18n="t96" href="../">Más proyectos</a>
+      <a data-i18n="t97" href="../">Más proyectos</a>
       <a href="https://github.com/VuloB1/twitch-chat-keepalive">GitHub</a>
       <a href="https://github.com/VuloB1/twitch-chat-keepalive/issues">Issues</a>
     </span>
@@ -230,8 +233,8 @@
  "t6": "Firefox extension · Free · MIT license",
  "t7": "A Twitch chat that <em>does not freeze</em>.",
  "t8": "Stops the chat from going silent and reconnecting in Firefox when activity is low. Install it and it works: no settings, no buttons.",
- "t9": "View on GitHub",
- "t10": "How to install it",
+ "t9": "Add to Firefox",
+ "t10": "View the code",
  "t11": "Firefox 140+ (Android 142+) · also Waterfox, LibreWolf and other Firefox-based browsers",
  "t12": "seconds between each PING",
  "t13": "seconds with no data and it reconnects",
@@ -267,57 +270,58 @@
  "t43": "Install",
  "t44": "How to install it",
  "t45": "Works on Firefox 140 or newer (Firefox for Android, 142+), and on Waterfox, LibreWolf and other Firefox-based browsers.",
- "t46": "<b>Firefox Add-ons:</b> the link will be added once the listing is approved. In the meantime you can try it temporarily, as explained below.",
- "t47": "Temporary install (for testing)",
- "t48": "Download the code from <a href=\"https://github.com/VuloB1/twitch-chat-keepalive/archive/refs/heads/main.zip\">GitHub</a> and unzip it.",
- "t49": "In Firefox open this address:",
- "t50": "Click <b>Load Temporary Add-on…</b> and select <code>manifest.json</code>. It is removed when the browser closes.",
- "t51": "Technical details",
- "t52": "For those who want the details",
- "t53": "Parameters",
- "t54": "PING",
- "t55": "<code>PING :tmi.twitch.tv</code> every {ping} seconds.",
- "t56": "Watchdog",
- "t57": "Checks every 5 seconds; with no inbound data for {dead} seconds, it closes the socket.",
- "t58": "Hung close",
- "t59": "If Firefox does not fire <code>close</code> on a hung socket, the extension dispatches it after 1.5 s.",
- "t60": "Scope",
- "t61": "Only connections to <code>wss://irc-ws.chat.twitch.tv</code>.",
- "t62": "Compatibility",
- "t63": "Browsers",
- "t64": "Firefox 140+, Firefox for Android 142+, Waterfox, LibreWolf and similar.",
- "t65": "Manifest",
- "t66": "Version 2.",
- "t67": "Permissions",
- "t68": "Only runs on <code>*.twitch.tv</code>.",
- "t69": "Data",
- "t70": "Declares that it collects no data (<code>data_collection_permissions: none</code>).",
- "t71": "Files",
- "t72": "content.js",
- "t73": "Runs at <code>document_start</code> and injects <code>inject.js</code>.",
- "t74": "inject.js",
- "t75": "Wraps <code>window.WebSocket</code> in the page context.",
- "t76": "Build",
- "t77": "None to use it. To package: <code>npx web-ext lint</code> and <code>npx web-ext build</code>.",
- "t78": "License",
+ "t46": "Install from Firefox Add-ons",
+ "t47": "The official Mozilla listing is the recommended way: it updates itself.",
+ "t48": "Manual install (to try the code)",
+ "t49": "Download the code from <a href=\"https://github.com/VuloB1/twitch-chat-keepalive/archive/refs/heads/main.zip\">GitHub</a> and unzip it.",
+ "t50": "In Firefox open this address:",
+ "t51": "Click <b>Load Temporary Add-on…</b> and select <code>manifest.json</code>. It is removed when the browser closes.",
+ "t52": "Technical details",
+ "t53": "For those who want the details",
+ "t54": "Parameters",
+ "t55": "PING",
+ "t56": "<code>PING :tmi.twitch.tv</code> every {ping} seconds.",
+ "t57": "Watchdog",
+ "t58": "Checks every 5 seconds; with no inbound data for {dead} seconds, it closes the socket.",
+ "t59": "Hung close",
+ "t60": "If Firefox does not fire <code>close</code> on a hung socket, the extension dispatches it after 1.5 s.",
+ "t61": "Scope",
+ "t62": "Only connections to <code>wss://irc-ws.chat.twitch.tv</code>.",
+ "t63": "Compatibility",
+ "t64": "Browsers",
+ "t65": "Firefox 140+, Firefox for Android 142+, Waterfox, LibreWolf and similar.",
+ "t66": "Manifest",
+ "t67": "Version 2.",
+ "t68": "Permissions",
+ "t69": "Only runs on <code>*.twitch.tv</code>.",
+ "t70": "Data",
+ "t71": "Declares that it collects no data (<code>data_collection_permissions: none</code>).",
+ "t72": "Files",
+ "t73": "content.js",
+ "t74": "Runs at <code>document_start</code> and injects <code>inject.js</code>.",
+ "t75": "inject.js",
+ "t76": "Wraps <code>window.WebSocket</code> in the page context.",
+ "t77": "Build",
+ "t78": "None to use it. To package: <code>npx web-ext lint</code> and <code>npx web-ext build</code>.",
  "t79": "License",
- "t80": "MIT.",
- "t81": "Source",
- "t82": "<a href=\"https://github.com/VuloB1/twitch-chat-keepalive\">github.com/VuloB1/twitch-chat-keepalive</a>",
- "t83": "Questions",
- "t84": "Frequently asked questions",
- "t85": "Does it recover messages that were already lost?",
- "t86": "No. It prevents the disconnections so messages are not lost, but it cannot recover what was lost before.",
- "t87": "Does it work on Chrome?",
- "t88": "It is not needed: the problem is Firefox’s and this extension is only for Firefox and browsers based on it.",
- "t89": "Does it collect data?",
- "t90": "No. It collects, stores and sends nothing, and makes no network requests of its own.",
- "t91": "Does it affect other pages or connections?",
- "t92": "No. It only runs on twitch.tv and only touches the chat WebSocket; every other connection is left unmodified.",
- "t93": "How do I report a problem?",
- "t94": "Open an issue on <a href=\"https://github.com/VuloB1/twitch-chat-keepalive/issues\">GitHub</a>.",
- "t95": "MIT license · © 2026 Vulito",
- "t96": "More projects",
+ "t80": "License",
+ "t81": "MIT.",
+ "t82": "Source",
+ "t83": "<a href=\"https://github.com/VuloB1/twitch-chat-keepalive\">github.com/VuloB1/twitch-chat-keepalive</a>",
+ "t84": "Questions",
+ "t85": "Frequently asked questions",
+ "t86": "Does it recover messages that were already lost?",
+ "t87": "No. It prevents the disconnections so messages are not lost, but it cannot recover what was lost before.",
+ "t88": "Does it work on Chrome?",
+ "t89": "It is not needed: the problem is Firefox’s and this extension is only for Firefox and browsers based on it.",
+ "t90": "Does it collect data?",
+ "t91": "No. It collects, stores and sends nothing, and makes no network requests of its own.",
+ "t92": "Does it affect other pages or connections?",
+ "t93": "No. It only runs on twitch.tv and only touches the chat WebSocket; every other connection is left unmodified.",
+ "t94": "How do I report a problem?",
+ "t95": "Open an issue on <a href=\"https://github.com/VuloB1/twitch-chat-keepalive/issues\">GitHub</a>.",
+ "t96": "MIT license · © 2026 Vulito",
+ "t97": "More projects",
  "page.title": "Twitch Chat Keepalive — Twitch chat that does not freeze on Firefox"
 };
   window.NUMBERS = {"ping": 20, "dead": 50, "data": 0};

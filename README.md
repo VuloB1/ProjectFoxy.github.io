@@ -15,8 +15,8 @@ Twitch) o en `app.js` (Foxy). El idioma y el tema se recuerdan en todo el sitio.
 
 ## Agregar un proyecto nuevo
 
-1. Copiá una carpeta de proyecto (por ejemplo `TwitchChatKeepalive/`) y adaptá el HTML.
-2. Sumá una tarjeta en `index.html` (copiá un `<a class="proj ...">`) y un color en `shared/extra.css`.
+1. Copia una carpeta de proyecto (por ejemplo `TwitchChatKeepalive/`) y adapta el HTML.
+2. Suma una tarjeta en `index.html` (copia un `<a class="proj ...">`) y un color en `shared/extra.css`.
 3. El color de cada página está en el `<style>` de su `<head>` (`--accent` y paleta).
 
 ## Project Foxy
@@ -31,19 +31,19 @@ La versión, los enlaces de descarga y el tamaño de cada archivo se leen de la 
 Los archivos están en `ProjectFoxy/img/` (inglés) y `ProjectFoxy/img/es/` (español). Cada pestaña de la galería es un
 `<button data-shot="archivo.ext">` dentro de `#shot-tabs` en `index.html`.
 
-- **Actualizar una captura:** reemplazá el archivo con el mismo nombre en `img/` y `img/es/`.
-- **Poner un GIF:** dejalo en `img/es/` e `img/` y cambiá el `data-shot` de la pestaña (`efectos.gif`).
+- **Actualizar una captura:** reemplaza el archivo con el mismo nombre en `img/` y `img/es/`.
+- **Poner un GIF:** déjalo en `img/es/` e `img/` y cambia el `data-shot` de la pestaña (`efectos.gif`).
 - **Poner un video:** igual, con `.mp4` o `.webm`; se reproduce solo, sin sonido y en bucle. Si el video no
   tiene texto de la interfaz, alcanza con dejarlo en `img/` y sirve para los dos idiomas.
-- **Agregar una pestaña:** copiá un `<button>` de `#shot-tabs`, cambiá `data-shot` y los textos; el título
+- **Agregar una pestaña:** copia un `<button>` de `#shot-tabs`, cambia `data-shot` y los textos; el título
   y la frase se traducen en `EN` dentro de `app.js` (claves `shots.*`).
 
-Tamaño recomendado: 1280×800 (relación 16:10). Para que la página cargue rápido, usá WebP en las capturas y
-mantené los GIFs/videos por debajo de unos pocos MB.
+Tamaño recomendado: 1280×800 (relación 16:10). Para que la página cargue rápido, usa WebP en las capturas y
+mantén los GIFs/videos por debajo de unos pocos MB.
 
 ### Cifras
 
 Todas las cifras de la página («43 efectos», «38 filtros», «hasta 10 imágenes», «6 idiomas»…) viven en
 `ProjectFoxy/numbers.js`. Se cambian ahí y se actualizan en todos los textos, en español y en inglés (los textos usan
-marcadores como `{effects}`). Si agregás un texto nuevo con una cifra, usá un marcador existente o sumá uno
+marcadores como `{effects}`). Si agregas un texto nuevo con una cifra, usa un marcador existente o suma uno
 nuevo en ese archivo.
