@@ -30,6 +30,7 @@
     <symbol id="i-color" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" fill-opacity=".25"/></symbol>
     <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></symbol>
     <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18-3-3-3-15 0-18z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5C9.5 4.6 6 4.4 3 5.2v13.2c3-.8 6.5-.6 9 1.3 2.5-1.9 6-2.1 9-1.3V5.2c-3-.8-6.5-.6-9 1.3zM12 6.5v13.2"/></symbol>
     <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17v4M17 19h4"/></symbol>
     <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></symbol>
   </defs>
@@ -116,6 +117,7 @@
         <button role="tab" data-shot="gif.webp"><b data-i18n="shots.gif">GIF animado</b><span data-i18n="shots.gif.d">Animaciones con transiciones y texto.</span></button>
         <button role="tab" data-shot="collage.webp"><b data-i18n="shots.collage">Collage</b><span data-i18n="shots.collage.d">Diseños de rejilla o libres, sin límites.</span></button>
         <button role="tab" data-shot="comparador.webp"><b data-i18n="shots.compare">Comparador</b><span data-i18n="shots.compare.d">Hasta {compare} imágenes con zoom vinculado.</span></button>
+        <button role="tab" data-shot="lector.webp"><b data-i18n="shots.reader">Lector</b><span data-i18n="shots.reader.d">Manga y cómics en CBZ, ZIP o PDF, con página doble.</span></button>
         <button role="tab" data-shot="info.webp"><b data-i18n="shots.info">Información</b><span data-i18n="shots.info.d">Datos EXIF e histograma a un clic.</span></button>
         <button role="tab" data-shot="temas.webp"><b data-i18n="shots.themes">Temas e idiomas</b><span data-i18n="shots.themes.d">{themes} temas y {langs} idiomas, al instante.</span></button>
       </div>
@@ -144,10 +146,11 @@
       <button role="tab" class="fx-tab" data-i="2" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-film"/></svg><span data-i18n="f.gif.h">GIF, APNG y WebP</span></button>
       <button role="tab" class="fx-tab" data-i="3" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-collage"/></svg><span data-i18n="f.collage.h">Collage sin límites</span></button>
       <button role="tab" class="fx-tab" data-i="4" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-compare"/></svg><span data-i18n="f.compare.h">Comparador</span></button>
-      <button role="tab" class="fx-tab" data-i="5" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-color"/></svg><span data-i18n="f.color.h">Color correcto</span></button>
-      <button role="tab" class="fx-tab" data-i="6" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-shield"/></svg><span data-i18n="f.save.h">Guardado seguro</span></button>
-      <button role="tab" class="fx-tab" data-i="7" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-globe"/></svg><span data-i18n="f.langs.h">{langs} idiomas, {themes} temas</span></button>
-      <button role="tab" class="fx-tab" data-i="8" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-spark"/></svg><span data-i18n="f.more.h">Detalles que suman</span></button>
+      <button role="tab" class="fx-tab" data-i="5" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-book"/></svg><span data-i18n="f.reader.h">Lector de manga y cómics</span></button>
+      <button role="tab" class="fx-tab" data-i="6" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-color"/></svg><span data-i18n="f.color.h">Color correcto</span></button>
+      <button role="tab" class="fx-tab" data-i="7" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-shield"/></svg><span data-i18n="f.save.h">Guardado seguro</span></button>
+      <button role="tab" class="fx-tab" data-i="8" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-globe"/></svg><span data-i18n="f.langs.h">{langs} idiomas, {themes} temas</span></button>
+      <button role="tab" class="fx-tab" data-i="9" aria-selected="false"><svg class="fi" width="20" height="20"><use href="#i-spark"/></svg><span data-i18n="f.more.h">Detalles que suman</span></button>
     </div>
     <div class="fx-panels">
       <div class="fx-panel on" role="tabpanel">
@@ -169,6 +172,10 @@
       <div class="fx-panel" role="tabpanel">
         <div class="fx-text"><h3 data-i18n="f.compare.h">Comparador</h3><p data-i18n="f.compare.p">Hasta {compare} imágenes a la vez, con zoom vinculado.</p><p class="fx-chips"><span data-i18n="fc.4.0">{compareMin}–{compare} imágenes</span><span data-i18n="fc.4.1">Zoom vinculado</span></p></div>
         <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-compare"/></svg></div>
+      </div>
+      <div class="fx-panel" role="tabpanel">
+        <div class="fx-text"><h3 data-i18n="f.reader.h">Lector de manga y cómics</h3><p data-i18n="f.reader.p">Abre CBZ, ZIP y PDF, de derecha a izquierda o al revés, de una página o de dos.</p><p class="fx-chips"><span>CBZ</span><span>PDF</span><span data-i18n="fc.R.0">Derecha a izquierda</span><span data-i18n="fc.R.1">Página doble</span><span>FSR CAS</span></p></div>
+        <div class="fx-art" aria-hidden="true"><i></i><i></i><i></i><svg class="fx-big" viewBox="0 0 24 24"><use href="#i-book"/></svg></div>
       </div>
       <div class="fx-panel" role="tabpanel">
         <div class="fx-text"><h3 data-i18n="f.color.h">Color correcto</h3><p data-i18n="f.color.p">Display P3 y AdobeRGB se convierten a sRGB al abrir.</p><p class="fx-chips"><span>Display P3</span><span>AdobeRGB</span><span>sRGB</span></p></div>
@@ -256,7 +263,7 @@ flatpak run io.github.vulob1.ProjectFoxy</code></pre>
       <div class="spec" data-reveal>
         <h3 data-i18n="t.b.formats">Formatos</h3>
         <dl>
-          <div><dt data-i18n="t.formats.0.t">Abre</dt><dd data-i18n-html="t.formats.0.d">JPEG (también CMYK), PNG, WebP, TIFF (16 bits escalados a 8), BMP, GIF, ICO, HEIC/HEIF, AVIF, RAW de cámara, GIF/APNG/WebP animados.</dd></div>
+          <div><dt data-i18n="t.formats.0.t">Abre</dt><dd data-i18n-html="t.formats.0.d">JPEG (también CMYK), PNG, WebP, TIFF (16 bits escalados a 8), BMP, GIF, ICO, HEIC/HEIF, AVIF, RAW de cámara, GIF/APNG/WebP animados. El lector abre además CBZ, ZIP y PDF.</dd></div>
           <div><dt data-i18n="t.formats.1.t">Guarda</dt><dd data-i18n-html="t.formats.1.d">PNG, JPG (calidad 95, sin submuestreo de croma), BMP, TIFF, WebP.</dd></div>
           <div><dt data-i18n="t.formats.2.t">Crea</dt><dd data-i18n-html="t.formats.2.d">GIF, APNG, WebP animado.</dd></div>
         </dl>
